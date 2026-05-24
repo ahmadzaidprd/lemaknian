@@ -506,4 +506,11 @@ input[type="range"].slider-gold::-webkit-slider-thumb:hover {
     transition-duration: 0.01ms !important;
   }
 }
+/* ─── MOBILE NAV HELPERS ──────────────────────────────────── */
+.hidden-mobile { display: flex !important; }
+.show-mobile   { display: none !important; }
 
+@media (max-width: 767px) {
+  .hidden-mobile { display: none !important; }
+  .show-mobile   { display: grid !important; }
+}
