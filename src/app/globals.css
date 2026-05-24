@@ -506,6 +506,8 @@ input[type="range"].slider-gold::-webkit-slider-thumb:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+
 /* ─── MOBILE NAV HELPERS ──────────────────────────────────── */
 .hidden-mobile { display: flex !important; }
 .show-mobile   { display: none !important; }
@@ -513,4 +515,121 @@ input[type="range"].slider-gold::-webkit-slider-thumb:hover {
 @media (max-width: 767px) {
   .hidden-mobile { display: none !important; }
   .show-mobile   { display: grid !important; }
+}
+
+/* ─── HERO MOBILE FIX ─────────────────────────────────────── */
+.hero-section {
+  position: relative;
+  min-height: 100svh; /* svh = lebih akurat di mobile browser */
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding-top: 70px;
+  padding-bottom: 60px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hero-title {
+  font-size: clamp(40px, 8vw, 116px);
+  font-weight: 500;
+  line-height: 1;
+  margin-bottom: 20px;
+  color: var(--text-primary);
+  letter-spacing: -0.035em;
+  text-shadow: 0 4px 40px rgba(0,0,0,0.6);
+}
+
+.hero-subtitle {
+  color: var(--text-primary);
+  opacity: 0.78;
+  font-size: clamp(14px, 2.5vw, 17px);
+  line-height: 1.6;
+  max-width: 480px;
+  margin-bottom: 28px;
+}
+
+.hero-btns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  justify-content: center;
+}
+
+.hero-bg-text {
+  font-size: clamp(80px, 20vw, 460px);
+  font-weight: 500;
+  color: var(--accent);
+  white-space: nowrap;
+  letter-spacing: -0.04em;
+}
+
+/* dot pulse animation */
+.dot-pulse {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  animation: dotPulse 2s ease-in-out infinite;
+}
+@keyframes dotPulse {
+  0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
+  50% { box-shadow: 0 0 0 6px transparent; opacity: 0.8; }
+}
+
+/* scroll line indicator */
+.scroll-line-anim {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--accent), transparent);
+  animation: scrollLine 2s ease-in-out infinite;
+}
+@keyframes scrollLine {
+  0%    { transform: scaleY(0.2); transform-origin: top; }
+  50%   { transform: scaleY(1);   transform-origin: top; }
+  50.1% { transform: scaleY(1);   transform-origin: bottom; }
+  100%  { transform: scaleY(0);   transform-origin: bottom; }
+}
+
+/* ticker fade up animation */
+.ticker-fade-up {
+  animation: tickerFadeUp 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@keyframes tickerFadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* waPulse for dot indicators */
+@keyframes waPulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+/* ─── MOBILE RESPONSIVE SECTIONS ─────────────────────────── */
+@media (max-width: 767px) {
+  .hero-section {
+    padding-top: 64px;
+    padding-bottom: 48px;
+    min-height: 100svh;
+  }
+  .hero-content { padding: 0 16px; }
+  .hero-title { margin-bottom: 16px; }
+  .hero-subtitle { font-size: 14px; margin-bottom: 24px; }
+  .btn-primary, .btn-secondary { font-size: 13px; padding: 12px 20px; }
+
+  /* Ticker di mobile jangan tutup tombol WA */
+  .ticker-card { bottom: 90px; }
 }
