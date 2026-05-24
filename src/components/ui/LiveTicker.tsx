@@ -19,10 +19,12 @@ export default function LiveTicker() {
   const o = liveOrders[idx];
 
   return (
-    <div className={`ticker-card ${visible ? "" : "hidden"}`}>
+    <div className={`ticker-card ${visible ? "" : "hidden"}`}
+      style={{ maxWidth: "calc(100vw - 48px)" }}>
       <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 10 }}>
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <span className="dot-pulse" style={{ background: "#7ec87a", boxShadow: "0 0 0 4px rgba(126,200,122,0.18)" }} />
+          <span className="dot-pulse"
+            style={{ background: "#7ec87a", boxShadow: "0 0 0 4px rgba(126,200,122,0.18)" }} />
           <span style={{ color: "var(--text-secondary)", fontSize: 11, letterSpacing: 1, textTransform: "uppercase", fontWeight: 500 }}>
             Pesanan baru masuk
           </span>
@@ -32,16 +34,13 @@ export default function LiveTicker() {
           ✕
         </button>
       </div>
-
       <div key={`${o.nama}${idx}`} className="ticker-fade-up">
-        <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 4 }}>
+        <div style={{ display: "flex", alignItems: "baseline", gap: 6, marginBottom: 4, flexWrap: "wrap" }}>
           <span style={{ color: "var(--text-primary)", fontSize: 14, fontWeight: 500 }}>{o.nama}</span>
           <span style={{ color: "var(--text-muted)", fontSize: 12 }}>· {o.kota}</span>
         </div>
         <div style={{ color: "var(--text-secondary)", fontSize: 13, marginBottom: 8 }}>
-          Booking paket{" "}
-          <span style={{ color: "var(--accent)" }}>{o.paket}</span>
-          {" "}· {o.pax} pax
+          Booking paket <span style={{ color: "var(--accent)" }}>{o.paket}</span> · {o.pax} pax
         </div>
         <div style={{ color: "var(--text-faint)", fontSize: 11 }}>{o.ago}</div>
       </div>
