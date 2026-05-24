@@ -1,5 +1,4 @@
 "use client";
-
 import { waLink } from "@/lib/data";
 
 const COLS = [
@@ -9,14 +8,19 @@ const COLS = [
 ];
 
 export default function Footer() {
-  const socials: { l: string; h: string }[] = [
+  const socials = [
     { l: "IG", h: "#" }, { l: "FB", h: "#" }, { l: "TT", h: "#" },
     { l: "WA", h: waLink("Halo Bu Yati") },
   ];
+
   return (
     <footer className="footer">
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <div className="footer-grid" style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr 1fr 1.2fr", gap: 48, marginBottom: 56 }}>
+
+        {/* Grid — responsive via CSS class */}
+        <div className="footer-grid" style={{ marginBottom: 48 }}>
+
+          {/* Brand */}
           <div>
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
               <div style={{
@@ -24,13 +28,14 @@ export default function Footer() {
                 background: "var(--accent)", color: "var(--accent-text)",
                 display: "grid", placeItems: "center",
                 fontFamily: "Fraunces, serif", fontWeight: 700, fontSize: 18,
+                flexShrink: 0,
               }}>L</div>
               <span style={{ color: "var(--text-primary)", fontWeight: 600, fontSize: 18 }}>Lemaknian</span>
             </div>
             <p style={{ color: "var(--text-secondary)", fontSize: 13, lineHeight: 1.7, maxWidth: 280, marginBottom: 20 }}>
               Catering profesional Bengkulu sejak 1998. Dari dapur Bu Yati, langsung ke meja Anda.
             </p>
-            <div style={{ display: "flex", gap: 10 }}>
+            <div style={{ display: "flex", gap: 10, flexWrap: "wrap" }}>
               {socials.map((s) => (
                 <a key={s.l} href={s.h} aria-label={s.l}
                   style={{
@@ -46,9 +51,13 @@ export default function Footer() {
               ))}
             </div>
           </div>
+
+          {/* Kolom links */}
           {COLS.map((col) => (
             <div key={col.title}>
-              <div style={{ color: "var(--text-primary)", fontSize: 13, fontWeight: 600, marginBottom: 18, textTransform: "uppercase", letterSpacing: 1 }}>{col.title}</div>
+              <div style={{ color: "var(--text-primary)", fontSize: 13, fontWeight: 600, marginBottom: 18, textTransform: "uppercase", letterSpacing: 1 }}>
+                {col.title}
+              </div>
               <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: 10 }}>
                 {col.links.map((l) => (
                   <li key={l}>
@@ -63,10 +72,13 @@ export default function Footer() {
             </div>
           ))}
         </div>
+
+        {/* Bottom bar */}
         <div style={{ borderTop: "1px solid var(--border-light)", paddingTop: 24, display: "flex", justifyContent: "space-between", flexWrap: "wrap", gap: 12 }}>
           <div style={{ color: "var(--text-faint)", fontSize: 12 }}>© 2025 Lemaknian by Bu Yati Catering. Semua hak dilindungi.</div>
           <div style={{ color: "var(--text-faint)", fontSize: 12 }}>Dibuat dengan ❤️ di Bengkulu</div>
         </div>
+
       </div>
     </footer>
   );
