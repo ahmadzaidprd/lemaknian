@@ -1,9 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // output: "export",  <--- PASTIKAN ADA TANDA // DI DEPANNYA
-  trailingSlash: true,
-  images: {
-    unoptimized: true,
-  },
+  output: 'standalone',
+  // ... letakkan konfigurasi Anda yang lain di bawah sini jika ada (seperti konfigurasi images/sanity)
 };
+
 export default nextConfig;
