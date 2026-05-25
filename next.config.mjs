@@ -1,9 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export", // <--- Hapus tanda // agar menjadi web statis
+  // output: "export",  <--- PASTIKAN ADA TANDA // DI DEPANNYA
   trailingSlash: true,
   images: {
-    unoptimized: true, // Bagus, agar gambar dari Sanity CDN bisa langsung tampil
+    unoptimized: true,
   },
 };
 export default nextConfig;
