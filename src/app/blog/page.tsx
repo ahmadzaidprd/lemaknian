@@ -2,6 +2,8 @@ import { getSemuaArtikel, urlFor } from "@/lib/sanity";
 import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
+export const dynamic = "force-static";
+export const revalidate = false;
 
 export const metadata: Metadata = {
   title: "Blog & Tips Catering — Lemaknian",
