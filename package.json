@@ -12,6 +12,7 @@
     "@hookform/resolvers": "^3.9.0",
     "@portabletext/react": "^6.2.0",
     "@sanity/image-url": "^2.1.1",
+    "@vercel/speed-insights": "^2.0.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.3.0",
     "lucide-react": "^0.400.0",
