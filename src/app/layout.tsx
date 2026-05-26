@@ -4,6 +4,7 @@ import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FloatingWA } from "@/components/ui/FloatingWA";
 import LiveTicker from "@/components/ui/LiveTicker";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "Lemaknian — Catering Pernikahan & Hajatan Bengkulu",
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Footer />
         <FloatingWA />
         <LiveTicker />
+        <SpeedInsights />
       </body>
     </html>
   );
