@@ -1,9 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: 'export',
   trailingSlash: true,
   images: {
-    unoptimized: true,
+    unoptimized: true, // Biarkan ini tetap true agar aman untuk aset Sanity Anda
   },
 };
 
