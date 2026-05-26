@@ -1,19 +1,18 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   trailingSlash: true,
-  images: { unoptimized: true },
-  async headers() {
-    return [
+  images: {
+    // Kita hapus unoptimized: true agar optimasi gambar otomatis Vercel menyala!
+    // Tambahkan domain CDN Sanity di bawah ini agar Next.js diizinkan mengoptimasi gambarnya
+    remotePatterns: [
       {
-        source: '/(.*)',
-        headers: [
-          {
-            key: 'X-DNS-Prefetch-Control',
-            value: 'on',
-          },
-        ],
+        protocol: 'https',
+        hostname: 'cdn.sanity.io',
+        port: '',
+        pathname: '/**',
       },
-    ];
+    ],
   },
 };
+
 export default nextConfig;
