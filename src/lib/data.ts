@@ -19,9 +19,9 @@ export function waLink(pesan: string): string {
 // Foto disimpan di public/images/hero/
 // Ganti dengan foto asli Bu Yati kalau sudah ada
 export const heroPhotos: HeroPhoto[] = [
-  { url: "/images/hero/hero-1-rendang-rempah.jpg",     alt: "Rendang dan rempah" },
-  { url: "/images/hero/hero-2-prasmanan.jpg",           alt: "Hidangan prasmanan" },
-  { url: "/images/hero/hero-3-sajian-tradisional.jpg",  alt: "Sajian tradisional" },
+  { url: "/images/hero/hero-1-rendang-rempah.webp",     alt: "Rendang dan rempah" },
+  { url: "/images/hero/hero-2-prasmanan.webp",           alt: "Hidangan prasmanan" },
+  { url: "/images/hero/hero-3-sajian-tradisional.webp",  alt: "Sajian tradisional" },
 ];
 
 // ─── paket ────────────────────────────────────────────────

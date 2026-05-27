@@ -67,10 +67,10 @@ export default function Calculator() {
               <div style={{ color: "var(--text-muted)", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", marginBottom: 14 }}>Pilih paket</div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10, marginBottom: 32 }}>
                 {paketData.map((p, i) => (
-  <button key={p.id} onClick={() => {
-    setPaketIdx(i);
-    if (pax < p.min_pax) setPax(p.min_pax);
-  }}
+                  <button key={p.id} onClick={() => {
+                    setPaketIdx(i);
+                    if (pax < p.min_pax) setPax(p.min_pax);
+                  }}
                     style={{
                       background: paketIdx === i ? "rgba(var(--accent-rgb),0.1)" : "transparent",
                       border: `1px solid ${paketIdx === i ? "var(--accent)" : "var(--border)"}`,
@@ -89,13 +89,28 @@ export default function Calculator() {
               </div>
 
               <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 12 }}>
-                <div style={{ color: "var(--text-muted)", fontSize: 11, letterSpacing: 2, textTransform: "uppercase" }}>Jumlah tamu</div>
+                {/* label dihubungkan ke slider via htmlFor — fix accessibility */}
+                <label htmlFor="slider-tamu" style={{ color: "var(--text-muted)", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", cursor: "pointer" }}>
+                  Jumlah tamu
+                </label>
                 <div style={{ color: "var(--accent)", fontSize: 14, fontWeight: 600 }}>{pax} pax</div>
               </div>
-              <input type="range" min={paket.min_pax} max={500} step={paket.min_pax === 1 ? 5 : 10} value={pax}
-  onChange={(e) => setPax(Number(e.target.value))} className="slider-gold" />
+              <input
+                id="slider-tamu"
+                type="range"
+                min={paket.min_pax}
+                max={500}
+                step={paket.min_pax === 1 ? 5 : 10}
+                value={pax}
+                onChange={(e) => setPax(Number(e.target.value))}
+                className="slider-gold"
+                aria-label={`Jumlah tamu: ${pax} pax`}
+                aria-valuemin={paket.min_pax}
+                aria-valuemax={500}
+                aria-valuenow={pax}
+              />
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8, color: "var(--text-faint)", fontSize: 11 }}>
-               <span>{paket.min_pax} pax</span>
+                <span>{paket.min_pax} pax</span>
                 <span>500+ pax</span>
               </div>
 
