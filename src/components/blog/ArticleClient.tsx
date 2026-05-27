@@ -266,7 +266,7 @@ export function StickyCTA() {
         Bu Yati siap bantu. Konsultasi gratis, respon 1 jam.
       </p>
       <a
-        href="https://wa.me/6281234567890?text=Halo Bu Yati, saya mau konsultasi catering."
+        href="https://wa.me/6281274203815?text=Halo Bu Yati, saya mau konsultasi catering."
         target="_blank" rel="noopener noreferrer"
         style={{
           display: "block", textAlign: "center",

@@ -1,6 +1,6 @@
 "use client";
 
-import { Reveal, SplitText, TiltCard } from "@/components/animations";
+import { Reveal, SplitText } from "@/components/animations";
 import { testimoniData } from "@/lib/data";
 
 export default function Testimonials() {
@@ -42,7 +42,22 @@ export default function Testimonials() {
         <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 20 }}>
           {testimoniData.map((t, i) => (
             <Reveal key={t.id} delay={i * 100}>
-              <TiltCard className="card" max={7} style={{ padding: 28, height: "100%", minHeight: 240, position: "relative" }}>
+              <div
+                className="card"
+                style={{
+                  padding: 28, height: "100%", minHeight: 240,
+                  position: "relative", overflow: "visible",
+                  transition: "transform 0.3s ease, box-shadow 0.3s ease",
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = "translateY(-4px)";
+                  e.currentTarget.style.boxShadow = "0 20px 40px rgba(0,0,0,0.3)";
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = "translateY(0)";
+                  e.currentTarget.style.boxShadow = "";
+                }}
+              >
                 <div className="font-display" style={{ position: "absolute", top: 12, right: 24, color: "rgba(var(--accent-rgb),0.18)", fontSize: 90, lineHeight: 0.6 }}>&ldquo;</div>
                 <div style={{ display: "flex", gap: 3, marginBottom: 16 }}>
                   {Array.from({ length: 5 }).map((_, j) => (
@@ -68,7 +83,7 @@ export default function Testimonials() {
                     <div style={{ color: "var(--text-muted)", fontSize: 11, marginTop: 2 }}>{t.acara}</div>
                   </div>
                 </div>
-              </TiltCard>
+              </div>
             </Reveal>
           ))}
         </div>

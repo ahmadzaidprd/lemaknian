@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Reveal, SplitText, MagnetButton, useParallax } from "@/components/animations";
 
 export default function Story() {
@@ -55,11 +56,16 @@ export default function Story() {
         </div>
 
         <div style={{ position: "relative", height: 560 }}>
+          {/* position: absolute + inset: 0 = positioned element, fill akan bekerja */}
           <div ref={photoRef} style={{ position: "absolute", inset: 0, borderRadius: 24, overflow: "hidden" }}>
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=900&q=80&auto=format&fit=crop"
+            <Image
+              src="/images/story/bu-yati.jpg"
               alt="Bu Yati di dapur"
-              style={{ width: "100%", height: "100%", objectFit: "cover", filter: "brightness(0.85) contrast(1.05)" }} />
+              fill
+              sizes="(max-width: 880px) 100vw, 50vw"
+              style={{ objectFit: "cover", filter: "brightness(0.85) contrast(1.05)" }}
+              priority
+            />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 50%, rgba(var(--photo-tint),0.5) 100%)" }} />
           </div>
           <Reveal delay={500}>

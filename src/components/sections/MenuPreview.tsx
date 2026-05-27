@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { Reveal, SplitText, TiltCard } from "@/components/animations";
 import { menuData, formatRupiah } from "@/lib/data";
@@ -55,12 +56,29 @@ export default function MenuPreview() {
           {filtered.map((item, i) => (
             <div key={item.id} style={{ animation: `menuFadeIn 0.5s cubic-bezier(0.22,1,0.36,1) ${i * 60}ms both` }}>
               <TiltCard className="card" max={5} style={{ overflow: "hidden", height: "100%" }}>
-                <div style={{ aspectRatio: "1/1", overflow: "hidden", position: "relative", background: "var(--accent-faint)" }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={item.img} alt={item.nama}
-                    style={{ width: "100%", height: "100%", objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.transform = "scale(1.1)")}
-                    onMouseLeave={(e) => (e.currentTarget.style.transform = "scale(1)")} />
+                {/*
+                  onMouseEnter/Leave dipindah ke div wrapper karena <Image> tidak support
+                  event handler langsung di tag-nya. querySelector('img') tetap bekerja
+                  karena Next.js Image merender <img> di DOM.
+                */}
+                <div
+                  style={{ aspectRatio: "1/1", overflow: "hidden", position: "relative", background: "var(--accent-faint)" }}
+                  onMouseEnter={(e) => {
+                    const img = e.currentTarget.querySelector<HTMLImageElement>("img");
+                    if (img) img.style.transform = "scale(1.1)";
+                  }}
+                  onMouseLeave={(e) => {
+                    const img = e.currentTarget.querySelector<HTMLImageElement>("img");
+                    if (img) img.style.transform = "scale(1)";
+                  }}
+                >
+                  <Image
+                    src={item.img}
+                    alt={item.nama}
+                    fill
+                    sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 25vw"
+                    style={{ objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)" }}
+                  />
                   <div style={{
                     position: "absolute", top: 12, left: 12,
                     background: "rgba(var(--photo-tint),0.85)", backdropFilter: "blur(10px)",

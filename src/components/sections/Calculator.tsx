@@ -9,7 +9,7 @@ export default function Calculator() {
   const [paketIdx, setPaketIdx] = useState(1);
   const paket = paketData[paketIdx];
   const totalRaw = pax * paket.harga_per_pax;
-  const ongkir = pax >= 100 ? 0 : 250000;
+  const ongkir = paket.slug === "personal" ? 0 : pax >= 100 ? 0 : 50000;
   const total = totalRaw + ongkir;
 
   const minPax = paket.min_pax;
@@ -67,7 +67,10 @@ export default function Calculator() {
               <div style={{ color: "var(--text-muted)", fontSize: 11, letterSpacing: 2, textTransform: "uppercase", marginBottom: 14 }}>Pilih paket</div>
               <div style={{ display: "grid", gridTemplateColumns: "repeat(2, 1fr)", gap: 10, marginBottom: 32 }}>
                 {paketData.map((p, i) => (
-                  <button key={p.id} onClick={() => setPaketIdx(i)}
+  <button key={p.id} onClick={() => {
+    setPaketIdx(i);
+    if (pax < p.min_pax) setPax(p.min_pax);
+  }}
                     style={{
                       background: paketIdx === i ? "rgba(var(--accent-rgb),0.1)" : "transparent",
                       border: `1px solid ${paketIdx === i ? "var(--accent)" : "var(--border)"}`,
@@ -89,10 +92,10 @@ export default function Calculator() {
                 <div style={{ color: "var(--text-muted)", fontSize: 11, letterSpacing: 2, textTransform: "uppercase" }}>Jumlah tamu</div>
                 <div style={{ color: "var(--accent)", fontSize: 14, fontWeight: 600 }}>{pax} pax</div>
               </div>
-              <input type="range" min={20} max={500} step={10} value={pax}
-                onChange={(e) => setPax(Number(e.target.value))} className="slider-gold" />
+              <input type="range" min={paket.min_pax} max={500} step={paket.min_pax === 1 ? 5 : 10} value={pax}
+  onChange={(e) => setPax(Number(e.target.value))} className="slider-gold" />
               <div style={{ display: "flex", justifyContent: "space-between", marginTop: 8, color: "var(--text-faint)", fontSize: 11 }}>
-                <span>20 pax</span>
+               <span>{paket.min_pax} pax</span>
                 <span>500+ pax</span>
               </div>
 
@@ -119,7 +122,7 @@ export default function Calculator() {
                     <span style={{ color: "var(--text-primary)" }}>{formatRupiah(totalRaw)}</span>
                   </div>
                   <div style={{ display: "flex", justifyContent: "space-between", fontSize: 13, color: "var(--text-secondary)" }}>
-                    <span><span style={{ display: "inline-block", width: 8, height: 8, background: "rgba(var(--accent-rgb),0.4)", borderRadius: 2, marginRight: 8 }} />Ongkir {ongkir === 0 ? "(gratis!)" : ""}</span>
+                    <span><span style={{ display: "inline-block", width: 8, height: 8, background: "rgba(var(--accent-rgb),0.4)", borderRadius: 2, marginRight: 8 }} />Ongkir {ongkir === 0 ? "(gratis!)" : "(luar 20km)"}</span>
                     <span style={{ color: "var(--text-primary)" }}>{ongkir === 0 ? "GRATIS" : formatRupiah(ongkir)}</span>
                   </div>
                 </div>

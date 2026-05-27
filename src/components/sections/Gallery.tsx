@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Reveal, SplitText } from "@/components/animations";
 import { galeriData } from "@/lib/data";
@@ -81,9 +82,19 @@ export default function Gallery() {
 
       <div ref={trackRef} className="gallery-track" style={{ paddingLeft: "calc(max(28px, (100vw - 1200px) / 2))" }}>
         {galeriData.map((g) => (
-          <div key={g.id} className="gallery-card">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={g.img} alt={g.judul} draggable={false} />
+          /*
+            Tambah position: relative di sini agar <Image fill> bekerja dengan benar.
+            Class gallery-card tetap ada untuk CSS styling yang sudah ada (ukuran, border-radius, dll).
+          */
+          <div key={g.id} className="gallery-card" style={{ position: "relative" }}>
+            <Image
+              src={g.img}
+              alt={g.judul}
+              fill
+              draggable={false}
+              sizes="(max-width: 640px) 100vw, 340px"
+              style={{ objectFit: "cover" }}
+            />
             <div className="gallery-overlay">
               <div style={{ display: "inline-block", background: "var(--accent)", color: "var(--accent-text)", padding: "4px 10px", borderRadius: 999, fontSize: 10, fontWeight: 600, marginBottom: 14, alignSelf: "flex-start", textTransform: "uppercase", letterSpacing: 0.5 }}>{g.kategori}</div>
               <div className="font-display" style={{ fontSize: 22, fontWeight: 500, lineHeight: 1.15, marginBottom: 8, letterSpacing: "-0.01em" }}>{g.judul}</div>

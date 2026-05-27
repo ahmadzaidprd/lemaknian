@@ -32,7 +32,7 @@ Hero  →  How It Works  →  Story Bu Yati  →  Calculator  →  Packages
 ### Nomor WhatsApp
 Edit `src/lib/data.ts`:
 ```ts
-const NOMOR_WA = "6281234567890"; // ganti dengan nomor asli
+const NOMOR_WA = "6281274203815"; // ganti dengan nomor asli
 ```
 
 ### Menu & Paket

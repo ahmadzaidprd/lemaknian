@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Reveal, SplitText, MagnetButton } from "@/components/animations";
 import { heroPhotos, floatIngredients, menuData } from "@/lib/data";
@@ -21,8 +22,11 @@ export default function Hero({ variant = "bigType" }: HeroProps) {
     if (!el) return;
     const onScroll = () => {
       const sc = window.scrollY;
+      // Dulu: p.style.backgroundPosition = `center ${50 + sc * 0.04}%`
+      // Sekarang: ubah objectPosition di <img> dalam .hero-photo
       el.querySelectorAll<HTMLDivElement>(".hero-photo").forEach((p) => {
-        p.style.backgroundPosition = `center ${50 + sc * 0.04}%`;
+        const img = p.querySelector<HTMLImageElement>("img");
+        if (img) img.style.objectPosition = `center ${50 + sc * 0.04}%`;
       });
     };
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -31,9 +35,9 @@ export default function Hero({ variant = "bigType" }: HeroProps) {
 
   return (
     <section id="hero" ref={heroRef} className="hero-section">
-      {variant === "bigType"     && <HeroBigType photoIdx={photoIdx} />}
-      {variant === "centerStack" && <HeroCenterStack photoIdx={photoIdx} />}
-      {variant === "splitMarquee"&& <HeroSplitMarquee photoIdx={photoIdx} />}
+      {variant === "bigType"      && <HeroBigType photoIdx={photoIdx} />}
+      {variant === "centerStack"  && <HeroCenterStack photoIdx={photoIdx} />}
+      {variant === "splitMarquee" && <HeroSplitMarquee photoIdx={photoIdx} />}
 
       {/* photo indicator pills */}
       <div style={{
@@ -63,13 +67,41 @@ export default function Hero({ variant = "bigType" }: HeroProps) {
   );
 }
 
+/* ── HeroPhoto: wrapper reusable ── */
+// Menggantikan pola backgroundImage + backgroundPosition.
+// Next.js <Image fill> otomatis serve WebP & resize sesuai viewport.
+// Parallax tetap jalan via objectPosition (diubah dari scroll handler di atas).
+function HeroPhoto({ p, i, photoIdx, opacity }: {
+  p: { url: string; alt: string };
+  i: number;
+  photoIdx: number;
+  opacity: number;
+}) {
+  return (
+    <div
+      className={`hero-photo ${i === photoIdx ? "active" : ""}`}
+      style={{ overflow: "hidden", opacity: i === photoIdx ? opacity : 0 }}
+    >
+      <Image
+        src={p.url}
+        alt={p.alt}
+        fill
+        sizes="100vw"
+        style={{ objectFit: "cover", objectPosition: "center 50%" }}
+        // priority hanya untuk foto pertama (yang tampil saat halaman dibuka)
+        priority={i === 0}
+        quality={85}
+      />
+    </div>
+  );
+}
+
 /* ── variant A: bigType ── */
 function HeroBigType({ photoIdx }: { photoIdx: number }) {
   return (
     <>
       {heroPhotos.map((p, i) => (
-        <div key={i} className={`hero-photo ${i === photoIdx ? "active" : ""}`}
-          style={{ backgroundImage: `url(${p.url})`, opacity: i === photoIdx ? 1 : 0 }} />
+        <HeroPhoto key={i} p={p} i={i} photoIdx={photoIdx} opacity={1} />
       ))}
       <div className="hero-vignette" />
       <div className="hero-grain" />
@@ -135,8 +167,7 @@ function HeroCenterStack({ photoIdx }: { photoIdx: number }) {
   return (
     <>
       {heroPhotos.map((p, i) => (
-        <div key={i} className={`hero-photo ${i === photoIdx ? "active" : ""}`}
-          style={{ backgroundImage: `url(${p.url})`, opacity: i === photoIdx ? 0.55 : 0 }} />
+        <HeroPhoto key={i} p={p} i={i} photoIdx={photoIdx} opacity={0.55} />
       ))}
       <div style={{
         position: "absolute", inset: 0,
@@ -194,8 +225,7 @@ function HeroSplitMarquee({ photoIdx }: { photoIdx: number }) {
   return (
     <>
       {heroPhotos.map((p, i) => (
-        <div key={i} className={`hero-photo ${i === photoIdx ? "active" : ""}`}
-          style={{ backgroundImage: `url(${p.url})`, opacity: i === photoIdx ? 0.4 : 0 }} />
+        <HeroPhoto key={i} p={p} i={i} photoIdx={photoIdx} opacity={0.4} />
       ))}
       <div style={{
         position: "absolute", inset: 0,

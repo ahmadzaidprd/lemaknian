@@ -10,56 +10,52 @@ export function formatRupiah(n: number): string {
   }).format(n);
 }
 
-const NOMOR_WA = "6281234567890"; // ganti dengan nomor WA Bu Yati
+const NOMOR_WA = "6281274203815"; // ganti dengan nomor WA Bu Yati
 export function waLink(pesan: string): string {
   return `https://wa.me/${NOMOR_WA}?text=${encodeURIComponent(pesan)}`;
 }
 
-// ─── hero photos (Unsplash food photography) ──────────────
+// ─── hero photos ──────────────────────────────────────────
+// Foto disimpan di public/images/hero/
+// Ganti dengan foto asli Bu Yati kalau sudah ada
 export const heroPhotos: HeroPhoto[] = [
-  { url: "https://images.unsplash.com/photo-1505253758473-96b7015fcd40?w=1800&q=80&auto=format&fit=crop", alt: "Rendang dan rempah" },
-  { url: "https://images.unsplash.com/photo-1631292784640-2b24be784d5d?w=1800&q=80&auto=format&fit=crop", alt: "Hidangan prasmanan" },
-  { url: "https://images.unsplash.com/photo-1565299507177-b0ac66763828?w=1800&q=80&auto=format&fit=crop", alt: "Sajian tradisional" },
+  { url: "/images/hero/hero-1-rendang-rempah.jpg",     alt: "Rendang dan rempah" },
+  { url: "/images/hero/hero-2-prasmanan.jpg",           alt: "Hidangan prasmanan" },
+  { url: "/images/hero/hero-3-sajian-tradisional.jpg",  alt: "Sajian tradisional" },
 ];
 
 // ─── paket ────────────────────────────────────────────────
 export const paketData: Paket[] = [
   {
-    id: "1", nama: "Personal", slug: "personal", harga_per_pax: 25000, min_pax: 20, icon: "👥",
+    id: "1", nama: "Personal", slug: "personal", harga_per_pax: 15000, min_pax: 1, icon: "👥",
     deskripsi: "Cocok untuk arisan, syukuran, dan acara keluarga kecil yang intim.",
-    fitur: ["Minimum 20 pax", "3 menu utama pilihan", "Prasmanan atau box", "Free ongkir dalam kota", "Konfirmasi via WhatsApp"],
+    fitur: ["Mulai dari 1 pax", "3 menu utama pilihan", "Prasmanan atau box", "Free ongkir dalam kota", "Konfirmasi via WhatsApp"],
   },
   {
-    id: "2", nama: "Hajatan", slug: "hajatan", harga_per_pax: 45000, min_pax: 50, icon: "🎊", popular: true,
+    id: "2", nama: "Hajatan", slug: "hajatan", harga_per_pax: 20000, min_pax: 50, icon: "🎊", popular: true,
     deskripsi: "Paket lengkap untuk hajatan, khitanan, dan acara keluarga besar.",
     fitur: ["Minimum 50 pax", "5 menu utama + 2 lauk", "Prasmanan + 1 gubukan", "Dekorasi meja", "Tim pelayan 3 orang", "Free ongkir radius 20km"],
-  },
-  {
-    id: "3", nama: "Pernikahan", slug: "pernikahan", harga_per_pax: 60000, min_pax: 100, icon: "💍",
-    deskripsi: "Paket premium untuk hari spesial. Sajian terbaik, kenangan abadi.",
-    fitur: ["Minimum 100 pax", "7 menu utama + dessert", "2 gubukan & live station", "Dekorasi premium", "Tim pelayan profesional", "Dokumentasi acara"],
-  },
-  {
-    id: "4", nama: "Korporat", slug: "korporat", harga_per_pax: 35000, min_pax: 50, icon: "🏢",
-    deskripsi: "Solusi catering profesional untuk rapat, seminar, dan acara perusahaan.",
-    fitur: ["Minimum 50 pax", "Menu rapat & seminar", "Coffee break tersedia", "Box atau prasmanan", "Invoice & kwitansi resmi", "Bisa tagih instansi"],
   },
 ];
 
 // ─── menu ─────────────────────────────────────────────────
+// Foto disimpan di public/images/menu/
+// ⚠️  id 7 & 8 (kue-tat & puding) pakai foto sama di Unsplash aslinya
+//     — sudah disimpan terpisah, ganti foto puding kalau punya foto asli
+// ⚠️  id 11 & 12 (risoles & lemper) juga sama — ganti foto lemper kalau ada
 export const menuData: MenuItem[] = [
-  { id: "1",  nama: "Rendang Sapi Bengkulu", kategori: "lauk",    harga: 28000, deskripsi: "Rendang bumbu khas Bengkulu, dimasak 4 jam.",   img: "https://images.unsplash.com/photo-1604329760661-e71dc83f8f26?w=600&q=80&auto=format&fit=crop", emoji: "🍛" },
-  { id: "2",  nama: "Gulai Rebung Khas",     kategori: "sayur",   harga: 18000, deskripsi: "Gulai rebung asli Bengkulu, santan segar.",     img: "https://images.unsplash.com/photo-1567337710282-00832b415979?w=600&q=80&auto=format&fit=crop", emoji: "🥘" },
-  { id: "3",  nama: "Ikan Bakar Serani",     kategori: "lauk",    harga: 35000, deskripsi: "Ikan segar bakar bumbu serani pesisir.",        img: "https://images.unsplash.com/photo-1544025162-d76694265947?w=600&q=80&auto=format&fit=crop", emoji: "🐟" },
-  { id: "4",  nama: "Ayam Goreng Serundeng", kategori: "lauk",    harga: 22000, deskripsi: "Ayam renyah dengan serundeng kelapa gurih.",    img: "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?w=600&q=80&auto=format&fit=crop", emoji: "🍗" },
-  { id: "5",  nama: "Nasi Putih Pulen",      kategori: "nasi",    harga: 8000,  deskripsi: "Nasi pulen dari beras pilihan Bengkulu.",       img: "https://images.unsplash.com/photo-1536304993881-ff6e9eefa2a6?w=600&q=80&auto=format&fit=crop", emoji: "🍚" },
-  { id: "6",  nama: "Sayur Lodeh Terong",    kategori: "sayur",   harga: 15000, deskripsi: "Lodeh terong & labu siam kuah santan.",         img: "https://images.unsplash.com/photo-1547592180-85f173990554?w=600&q=80&auto=format&fit=crop", emoji: "🥗" },
-  { id: "7",  nama: "Kue Tat Bengkulu",      kategori: "dessert", harga: 12000, deskripsi: "Kue tradisional isian nanas otentik.",          img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80&auto=format&fit=crop", emoji: "🍮" },
-  { id: "8",  nama: "Puding Karamel",        kategori: "dessert", harga: 10000, deskripsi: "Puding lembut, saus karamel menyegarkan.",      img: "https://images.unsplash.com/photo-1488477181946-6428a0291777?w=600&q=80&auto=format&fit=crop", emoji: "🍯" },
-  { id: "9",  nama: "Es Teh Manis",          kategori: "minuman", harga: 6000,  deskripsi: "Teh manis segar, sempurna untuk acara siang.",  img: "https://images.unsplash.com/photo-1556679343-c7306c1976bc?w=600&q=80&auto=format&fit=crop", emoji: "🍹" },
-  { id: "10", nama: "Jus Jeruk Segar",       kategori: "minuman", harga: 10000, deskripsi: "Jus jeruk peras langsung, tanpa pengawet.",     img: "https://images.unsplash.com/photo-1613478223719-2ab802602423?w=600&q=80&auto=format&fit=crop", emoji: "🍊" },
-  { id: "11", nama: "Risoles Mayo",          kategori: "snack",   harga: 8000,  deskripsi: "Risoles renyah, isian sayur + saus mayo.",      img: "https://images.unsplash.com/photo-1625944525533-473d1a3d29ef?w=600&q=80&auto=format&fit=crop", emoji: "🥟" },
-  { id: "12", nama: "Lemper Ayam",           kategori: "snack",   harga: 7000,  deskripsi: "Lemper ketan isi ayam, balut daun pisang.",     img: "https://images.unsplash.com/photo-1625944525533-473d1a3d29ef?w=600&q=80&auto=format&fit=crop", emoji: "🫔" },
+  { id: "1",  nama: "Rendang Sapi Bengkulu", kategori: "lauk",    harga: 28000, deskripsi: "Rendang bumbu khas Bengkulu, dimasak 4 jam.",   img: "/images/menu/rendang-sapi.jpg",  emoji: "🍛" },
+  { id: "2",  nama: "Gulai Rebung Khas",     kategori: "sayur",   harga: 18000, deskripsi: "Gulai rebung asli Bengkulu, santan segar.",     img: "/images/menu/gulai-rebung.jpg",  emoji: "🥘" },
+  { id: "3",  nama: "Ikan Bakar Serani",     kategori: "lauk",    harga: 35000, deskripsi: "Ikan segar bakar bumbu serani pesisir.",        img: "/images/menu/ikan-bakar.jpg",    emoji: "🐟" },
+  { id: "4",  nama: "Ayam Goreng Serundeng", kategori: "lauk",    harga: 22000, deskripsi: "Ayam renyah dengan serundeng kelapa gurih.",    img: "/images/menu/ayam-goreng.jpg",   emoji: "🍗" },
+  { id: "5",  nama: "Nasi Putih Pulen",      kategori: "nasi",    harga: 8000,  deskripsi: "Nasi pulen dari beras pilihan Bengkulu.",       img: "/images/menu/nasi-putih.jpg",    emoji: "🍚" },
+  { id: "6",  nama: "Sayur Lodeh Terong",    kategori: "sayur",   harga: 15000, deskripsi: "Lodeh terong & labu siam kuah santan.",         img: "/images/menu/sayur-lodeh.jpg",   emoji: "🥗" },
+  { id: "7",  nama: "Kue Tat Bengkulu",      kategori: "dessert", harga: 12000, deskripsi: "Kue tradisional isian nanas otentik.",          img: "/images/menu/kue-tat.jpg",       emoji: "🍮" },
+  { id: "8",  nama: "Puding Karamel",        kategori: "dessert", harga: 10000, deskripsi: "Puding lembut, saus karamel menyegarkan.",      img: "/images/menu/puding-karamel.jpg",emoji: "🍯" },
+  { id: "9",  nama: "Es Teh Manis",          kategori: "minuman", harga: 6000,  deskripsi: "Teh manis segar, sempurna untuk acara siang.",  img: "/images/menu/es-teh.jpg",        emoji: "🍹" },
+  { id: "10", nama: "Jus Jeruk Segar",       kategori: "minuman", harga: 10000, deskripsi: "Jus jeruk peras langsung, tanpa pengawet.",     img: "/images/menu/jus-jeruk.jpg",     emoji: "🍊" },
+  { id: "11", nama: "Risoles Mayo",          kategori: "snack",   harga: 8000,  deskripsi: "Risoles renyah, isian sayur + saus mayo.",      img: "/images/menu/risoles-mayo.jpg",  emoji: "🥟" },
+  { id: "12", nama: "Lemper Ayam",           kategori: "snack",   harga: 7000,  deskripsi: "Lemper ketan isi ayam, balut daun pisang.",     img: "/images/menu/lemper-ayam.jpg",   emoji: "🫔" },
 ];
 
 // ─── testimoni ────────────────────────────────────────────
@@ -73,15 +69,16 @@ export const testimoniData: Testimoni[] = [
 ];
 
 // ─── galeri ───────────────────────────────────────────────
+// Foto disimpan di public/images/gallery/
 export const galeriData: GaleriItem[] = [
-  { id: "1", judul: "Pernikahan Rina & Dedi",    kategori: "pernikahan", pax: 300, lokasi: "Gedung Serbaguna",  img: "https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=900&q=80&auto=format&fit=crop", emoji: "💒", deskripsi: "Resepsi mewah 300 tamu di Gedung Serbaguna Kota Bengkulu." },
-  { id: "2", judul: "Hajatan Keluarga Saputra",  kategori: "hajatan",    pax: 200, lokasi: "Kota Bengkulu",     img: "https://images.unsplash.com/photo-1555244162-803834f70033?w=900&q=80&auto=format&fit=crop", emoji: "🎊", deskripsi: "Syukuran khitanan dengan hidangan tradisional Bengkulu." },
-  { id: "3", judul: "Seminar Pemkot",            kategori: "korporat",   pax: 120, lokasi: "Balai Kota",        img: "https://images.unsplash.com/photo-1567521464027-f127ff144326?w=900&q=80&auto=format&fit=crop", emoji: "🏛️", deskripsi: "Coffee break dan makan siang untuk 120 peserta seminar." },
-  { id: "4", judul: "Arisan PKK",                kategori: "personal",   pax: 60,  lokasi: "Bengkulu Tengah",   img: "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=900&q=80&auto=format&fit=crop", emoji: "👥", deskripsi: "Arisan rutin dengan menu pilihan Bu Yati yang selalu ditunggu." },
-  { id: "5", judul: "Nisa & Fahmi",              kategori: "pernikahan", pax: 150, lokasi: "Bengkulu Utara",    img: "https://images.unsplash.com/photo-1530103862676-de8c9debad1d?w=900&q=80&auto=format&fit=crop", emoji: "💍", deskripsi: "Resepsi intimate 150 tamu dengan sentuhan dekorasi elegan." },
-  { id: "6", judul: "Training PT Sumber Rejeki", kategori: "korporat",   pax: 80,  lokasi: "Bengkulu Kota",     img: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=900&q=80&auto=format&fit=crop", emoji: "🏢", deskripsi: "Catering 3 hari untuk training karyawan dengan menu bervariasi." },
-  { id: "7", judul: "Syukuran 100 hari",         kategori: "personal",   pax: 40,  lokasi: "Pondok Kelapa",     img: "https://images.unsplash.com/photo-1464195244916-405fa0a82545?w=900&q=80&auto=format&fit=crop", emoji: "🍼", deskripsi: "Syukuran 100 hari kelahiran dengan menu keluarga." },
-  { id: "8", judul: "Resepsi Adat",              kategori: "pernikahan", pax: 400, lokasi: "Gedung Wanita",     img: "https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=900&q=80&auto=format&fit=crop", emoji: "👰", deskripsi: "Resepsi adat dengan dekorasi tradisional dan 400 tamu." },
+  { id: "1", judul: "Pernikahan Rina & Dedi",    kategori: "pernikahan", pax: 300, lokasi: "Gedung Serbaguna",  img: "/images/gallery/pernikahan-rina-dedi.jpg",    emoji: "💒", deskripsi: "Resepsi mewah 300 tamu di Gedung Serbaguna Kota Bengkulu." },
+  { id: "2", judul: "Hajatan Keluarga Saputra",  kategori: "hajatan",    pax: 200, lokasi: "Kota Bengkulu",     img: "/images/gallery/hajatan-saputra.jpg",          emoji: "🎊", deskripsi: "Syukuran khitanan dengan hidangan tradisional Bengkulu." },
+  { id: "3", judul: "Seminar Pemkot",            kategori: "korporat",   pax: 120, lokasi: "Balai Kota",        img: "/images/gallery/seminar-pemkot.jpg",           emoji: "🏛️", deskripsi: "Coffee break dan makan siang untuk 120 peserta seminar." },
+  { id: "4", judul: "Arisan PKK",                kategori: "personal",   pax: 60,  lokasi: "Bengkulu Tengah",   img: "/images/gallery/arisan-pkk.jpg",               emoji: "👥", deskripsi: "Arisan rutin dengan menu pilihan Bu Yati yang selalu ditunggu." },
+  { id: "5", judul: "Nisa & Fahmi",              kategori: "pernikahan", pax: 150, lokasi: "Bengkulu Utara",    img: "/images/gallery/pernikahan-nisa-fahmi.jpg",    emoji: "💍", deskripsi: "Resepsi intimate 150 tamu dengan sentuhan dekorasi elegan." },
+  { id: "6", judul: "Training PT Sumber Rejeki", kategori: "korporat",   pax: 80,  lokasi: "Bengkulu Kota",     img: "/images/gallery/training-sumber-rejeki.jpg",  emoji: "🏢", deskripsi: "Catering 3 hari untuk training karyawan dengan menu bervariasi." },
+  { id: "7", judul: "Syukuran 100 hari",         kategori: "personal",   pax: 40,  lokasi: "Pondok Kelapa",     img: "/images/gallery/syukuran-100-hari.jpg",        emoji: "🍼", deskripsi: "Syukuran 100 hari kelahiran dengan menu keluarga." },
+  { id: "8", judul: "Resepsi Adat",              kategori: "pernikahan", pax: 400, lokasi: "Gedung Wanita",     img: "/images/gallery/resepsi-adat.jpg",             emoji: "👰", deskripsi: "Resepsi adat dengan dekorasi tradisional dan 400 tamu." },
 ];
 
 // ─── live ticker (faux real-time orders) ──────────────────
@@ -122,7 +119,6 @@ export const ACCENT_PALETTES: [string, string, string][] = [
   ["#e89370", "#f4b495", "#c46f4f"], // Saffron
   ["#cfa8d6", "#e1c5e6", "#a583b0"], // Plum
 ];
-
 
 // ─── blog ─────────────────────────────────────────────────
 export const blogData: BlogPost[] = [
