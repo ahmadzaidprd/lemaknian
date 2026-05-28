@@ -1,19 +1,40 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 96" fill="none">
-  <rect width="80" height="96" fill="#0a0601"/>
-  <path d="M26 20 C25 15 27 11 25 6" stroke="#c9963c" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/>
-  <path d="M40 17 C39 11 41 7 40 2" stroke="#c9963c" stroke-width="1.5" stroke-linecap="round" opacity="0.75"/>
-  <path d="M54 20 C53 15 55 11 53 6" stroke="#c9963c" stroke-width="1.3" stroke-linecap="round" opacity="0.4"/>
-  <rect x="36.5" y="18" width="7" height="4.5" rx="1.2" fill="#c9963c"/>
-  <path d="M12 33 Q12 22 40 21 Q68 22 68 33 Z" fill="#c9963c"/>
-  <rect x="8" y="33" width="64" height="4" fill="#c9963c"/>
-  <line x1="8" y1="37" x2="8" y2="72" stroke="#c9963c" stroke-width="1.6" stroke-linecap="round"/>
-  <line x1="72" y1="37" x2="72" y2="72" stroke="#c9963c" stroke-width="1.6" stroke-linecap="round"/>
-  <path d="M8 72 Q8 82 40 82 Q72 82 72 72" stroke="#c9963c" stroke-width="1.6" fill="none" stroke-linecap="round"/>
-  <path d="M8 50 Q40 48 72 50" stroke="#c9963c" stroke-width="0.7" opacity="0.25" stroke-linecap="round"/>
-  <path d="M8 63 Q40 61 72 63" stroke="#c9963c" stroke-width="0.7" opacity="0.25" stroke-linecap="round"/>
-  <path d="M8 50 Q1 50 1 58 Q1 66 8 66" stroke="#c9963c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <path d="M72 50 Q79 50 79 58 Q79 66 72 66" stroke="#c9963c" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-  <path d="M8 72 Q7 80 16 82" stroke="#c9963c" stroke-width="1.6" stroke-linecap="round"/>
-  <path d="M72 72 Q73 80 64 82" stroke="#c9963c" stroke-width="1.6" stroke-linecap="round"/>
-  <line x1="16" y1="82" x2="64" y2="82" stroke="#c9963c" stroke-width="2.2" stroke-linecap="round"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" fill="none">
+  <!-- Background rounded warm gold -->
+  <rect width="96" height="96" rx="22" fill="#c9963c"/>
+  <!-- Inner subtle gradient feel -->
+  <rect width="96" height="96" rx="22" fill="url(#g)"/>
+  <defs>
+    <radialGradient id="g" cx="40%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#f5c96a" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#8a5e0a" stop-opacity="0.3"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dandang scaled & centered (original viewBox 0 0 80 96, scaled ~0.82, offset x+8) -->
+  <!-- Steam -->
+  <path d="M34 22 C33 17 35 13 33 8"  stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+  <path d="M48 19 C47 13 49 9 48 4"   stroke="#fff" stroke-width="1.9" stroke-linecap="round" opacity="0.9"/>
+  <path d="M62 22 C61 17 63 13 61 8"  stroke="#fff" stroke-width="1.6" stroke-linecap="round" opacity="0.5"/>
+  <!-- Knob -->
+  <rect x="44" y="20" width="8" height="5" rx="1.4" fill="#fff"/>
+  <!-- Lid dome -->
+  <path d="M18 37 Q18 25 48 24 Q78 25 78 37 Z" fill="#fff"/>
+  <!-- Rim -->
+  <rect x="14" y="37" width="68" height="5" rx="1" fill="#fff"/>
+  <!-- Body sides -->
+  <line x1="14" y1="42" x2="14" y2="76" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <line x1="82" y1="42" x2="82" y2="76" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <!-- Body bottom arc -->
+  <path d="M14 76 Q14 87 48 87 Q82 87 82 76" stroke="#fff" stroke-width="2" fill="none" stroke-linecap="round"/>
+  <!-- Ring details -->
+  <path d="M14 55 Q48 53 82 55" stroke="#fff" stroke-width="0.9" opacity="0.3" stroke-linecap="round"/>
+  <path d="M14 68 Q48 66 82 68" stroke="#fff" stroke-width="0.9" opacity="0.3" stroke-linecap="round"/>
+  <!-- Handles -->
+  <path d="M14 55 Q6 55 6 64 Q6 73 14 73"  stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <path d="M82 55 Q90 55 90 64 Q90 73 82 73" stroke="#fff" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+  <!-- Feet -->
+  <path d="M14 76 Q13 85 22 87" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <path d="M82 76 Q83 85 74 87" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  <!-- Base -->
+  <line x1="22" y1="87" x2="74" y2="87" stroke="#fff" stroke-width="2.6" stroke-linecap="round"/>
 </svg>
