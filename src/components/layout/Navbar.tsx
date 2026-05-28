@@ -73,37 +73,37 @@ export default function Navbar() {
     <>
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`} style={{ padding: "14px 20px" }}>
 
+        
         {/* Logo → home */}
-        <a href="/"
-          style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", zIndex: 60 }}>
-         <div style={{
-  width: 36, height: 36, flexShrink: 0,
-  display: "grid", placeItems: "center",
-}}>
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 96" width="36" height="36" fill="none">
-    <path d="M26 20 C25 15 27 11 25 6" stroke="var(--accent)" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/>
-    <path d="M40 17 C39 11 41 7 40 2" stroke="var(--accent)" strokeWidth="1.5" strokeLinecap="round" opacity="0.75"/>
-    <path d="M54 20 C53 15 55 11 53 6" stroke="var(--accent)" strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/>
-    <rect x="36.5" y="18" width="7" height="4.5" rx="1.2" fill="var(--accent)"/>
-    <path d="M12 33 Q12 22 40 21 Q68 22 68 33 Z" fill="var(--accent)"/>
-    <rect x="8" y="33" width="64" height="4" fill="var(--accent)"/>
-    <line x1="8" y1="37" x2="8" y2="72" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round"/>
-    <line x1="72" y1="37" x2="72" y2="72" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round"/>
-    <path d="M8 72 Q8 82 40 82 Q72 82 72 72" stroke="var(--accent)" strokeWidth="1.6" fill="none" strokeLinecap="round"/>
-    <path d="M8 50 Q40 48 72 50" stroke="var(--accent)" strokeWidth="0.7" opacity="0.25" strokeLinecap="round"/>
-    <path d="M8 63 Q40 61 72 63" stroke="var(--accent)" strokeWidth="0.7" opacity="0.25" strokeLinecap="round"/>
-    <path d="M8 50 Q1 50 1 58 Q1 66 8 66" stroke="var(--accent)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    <path d="M72 50 Q79 50 79 58 Q79 66 72 66" stroke="var(--accent)" strokeWidth="1.5" fill="none" strokeLinecap="round"/>
-    <path d="M8 72 Q7 80 16 82" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round"/>
-    <path d="M72 72 Q73 80 64 82" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round"/>
-    <line x1="16" y1="82" x2="64" y2="82" stroke="var(--accent)" strokeWidth="2.2" strokeLinecap="round"/>
-  </svg>
-</div>
-          <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-            <span style={{ color: "var(--text-primary)", fontWeight: 600, fontSize: 15 }}>Lemaknian</span>
-            
-          </div>
-        </a>
+<a href="/"
+  style={{ display: "flex", alignItems: "center", gap: 10, textDecoration: "none", zIndex: 60 }}>
+  <div style={{ width: 36, height: 36, flexShrink: 0, display: "grid", placeItems: "center" }}>
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 96" width="36" height="36" fill="none">
+      <path d="M26 20 C25 15 27 11 25 6" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/>
+      <path d="M40 17 C39 11 41 7 40 2" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.5" strokeLinecap="round" opacity="0.75"/>
+      <path d="M54 20 C53 15 55 11 53 6" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.3" strokeLinecap="round" opacity="0.4"/>
+      <rect x="36.5" y="18" width="7" height="4.5" rx="1.2" fill={theme === "dark" ? "#f5c96a" : "#5a3200"}/>
+      <path d="M12 33 Q12 22 40 21 Q68 22 68 33 Z" fill={theme === "dark" ? "#f5c96a" : "#5a3200"}/>
+      <rect x="8" y="33" width="64" height="4" fill={theme === "dark" ? "#f5c96a" : "#5a3200"}/>
+      <line x1="8" y1="37" x2="8" y2="72" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="72" y1="37" x2="72" y2="72" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M8 72 Q8 82 40 82 Q72 82 72 72" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.6" fill="none" strokeLinecap="round"/>
+      <path d="M8 50 Q40 48 72 50" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="0.7" opacity="0.25" strokeLinecap="round"/>
+      <path d="M8 63 Q40 61 72 63" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="0.7" opacity="0.25" strokeLinecap="round"/>
+      <path d="M8 50 Q1 50 1 58 Q1 66 8 66" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M72 50 Q79 50 79 58 Q79 66 72 66" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.5" fill="none" strokeLinecap="round"/>
+      <path d="M8 72 Q7 80 16 82" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.6" strokeLinecap="round"/>
+      <path d="M72 72 Q73 80 64 82" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="1.6" strokeLinecap="round"/>
+      <line x1="16" y1="82" x2="64" y2="82" stroke={theme === "dark" ? "#f5c96a" : "#5a3200"} strokeWidth="2.2" strokeLinecap="round"/>
+    </svg>
+  </div>
+  <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+    <span style={{
+      color: theme === "dark" ? "#f5c96a" : "#5a3200",
+      fontWeight: 600, fontSize: 15
+    }}>Lemaknian</span>
+  </div>
+</a>
 
         {/* Desktop links */}
         <div className="hidden-mobile" style={{ display: "flex", alignItems: "center", gap: 24 }}>
