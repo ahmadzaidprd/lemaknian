@@ -562,6 +562,74 @@ input[type="range"].slider-gold::-webkit-slider-thumb:hover {
 .hero-enter { animation: heroEnter 0.7s cubic-bezier(0.22, 1, 0.36, 1) both; }
 @media (prefers-reduced-motion: reduce) { .hero-enter { animation: none; } }
 
+/* ─── HERO REDESIGN (floating food) ───────────────────────── */
+.hero-redesign {
+  background:
+    radial-gradient(120% 80% at 50% -10%, #1c1408 0%, transparent 55%),
+    linear-gradient(180deg, var(--bg-deeper) 0%, var(--bg) 55%, var(--bg-dark) 100%);
+}
+.hero-content--center {
+  text-align: center;
+  align-items: center;
+}
+.hero-content--center .hero-subtitle { max-width: 520px; }
+
+/* Glow blobs emas */
+.hero-glow {
+  position: absolute; border-radius: 50%; pointer-events: none;
+  filter: blur(90px); opacity: 0.5; z-index: 1;
+}
+.hero-glow-a {
+  width: 520px; height: 520px; top: -120px; left: -80px;
+  background: radial-gradient(circle, rgba(var(--accent-rgb),0.35), transparent 70%);
+}
+.hero-glow-b {
+  width: 600px; height: 600px; bottom: -160px; right: -120px;
+  background: radial-gradient(circle, rgba(var(--accent-rgb),0.22), transparent 70%);
+}
+
+/* Kartu foto melayang */
+.hero-floats { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
+.hero-fl {
+  position: absolute;
+  height: auto;
+  object-fit: cover;
+  border-radius: 18px;
+  border: 1px solid rgba(245,239,230,0.10);
+  box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(var(--accent-rgb),0.06);
+  transform: rotate(var(--rot, 0deg));
+  animation: heroFloat var(--dur, 7s) ease-in-out infinite;
+  animation-delay: var(--dly, 0s);
+  will-change: transform;
+}
+@keyframes heroFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
+  50%      { transform: translateY(-18px) rotate(var(--rot, 0deg)); }
+}
+
+/* Scrim radial agar teks tengah selalu kontras di atas foto */
+.hero-scrim {
+  position: absolute; inset: 0; z-index: 3; pointer-events: none;
+  background: radial-gradient(60% 55% at 50% 50%,
+    rgba(var(--photo-tint),0.78) 0%, rgba(var(--photo-tint),0.45) 45%, transparent 78%);
+}
+.hero-redesign .hero-content { z-index: 5; }
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-fl { animation: none; }
+}
+
+/* Mobile: kurangi & kecilkan kartu agar bersih + ringan */
+@media (max-width: 767px) {
+  .hero-fl-hide-sm { display: none; }
+  .hero-fl { width: 130px !important; border-radius: 14px; }
+  .hero-glow { opacity: 0.4; filter: blur(70px); }
+  .hero-scrim {
+    background: radial-gradient(70% 60% at 50% 50%,
+      rgba(var(--photo-tint),0.85) 0%, rgba(var(--photo-tint),0.55) 50%, transparent 85%);
+  }
+}
+
 .hero-subtitle {
   color: var(--text-primary);
   opacity: 0.78;

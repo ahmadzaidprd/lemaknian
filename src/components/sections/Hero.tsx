@@ -1,39 +1,64 @@
-// Server Component (tanpa "use client") — hero dirender penuh di SSR.
-// Tujuan: judul H1 langsung tampil (opacity 1) tanpa menunggu JS, sehingga
-// Lighthouse PASTI menemukan kandidat LCP → tidak lagi NO_LCP. Juga membuang
-// slider/magnet/parallax JS dari hero → TBT lebih kecil & bundle JS lebih ringan.
+// Server Component — tanpa JS sama sekali (tanpa "use client").
+// Redesign "floating food" yang ringan & elegan:
+//  • Judul H1 statis penuh-opacity → kandidat LCP yang andal (anti NO_LCP).
+//  • Kartu foto makanan "melayang" pakai animasi MURNI CSS (compositor, bukan
+//    main-thread) → TBT ~0.
+//  • Pakai <img> biasa (bukan next/image) untuk float agar tak kena bug
+//    Lighthouse-mobile NO_LCP pada next/image. File webp-nya sudah mini (5–24KB).
 
-import { heroPhotos } from "@/lib/data";
 import type { HeroVariant } from "@/types";
 
 interface HeroProps { variant?: HeroVariant }
 
-export default function Hero(_props: HeroProps) {
-  const photo = heroPhotos[0];
+type Floater = {
+  src: string; w: number; h: number;
+  style: React.CSSProperties; hideSm?: boolean;
+};
 
+const FLOATERS: Floater[] = [
+  { src: "/images/hero-float/rendang-sapi.webp", w: 420, h: 280,
+    style: { top: "14%", left: "6%", width: 220, ["--rot" as any]: "-7deg", ["--dur" as any]: "6.5s" } },
+  { src: "/images/hero-float/ikan-bakar.webp", w: 420, h: 281,
+    style: { top: "20%", right: "7%", width: 200, ["--rot" as any]: "6deg", ["--dur" as any]: "7.2s", ["--dly" as any]: "-1.5s" } },
+  { src: "/images/hero-float/kue-tat.webp", w: 320, h: 480,
+    style: { bottom: "12%", left: "11%", width: 150, ["--rot" as any]: "5deg", ["--dur" as any]: "8s", ["--dly" as any]: "-0.8s" }, hideSm: true },
+  { src: "/images/hero-float/ayam-goreng.webp", w: 420, h: 256,
+    style: { bottom: "14%", right: "9%", width: 200, ["--rot" as any]: "-6deg", ["--dur" as any]: "6.8s", ["--dly" as any]: "-2.2s" } },
+  { src: "/images/hero-float/risoles-mayo.webp", w: 420, h: 280,
+    style: { top: "50%", left: "2%", width: 130, ["--rot" as any]: "8deg", ["--dur" as any]: "7.6s", ["--dly" as any]: "-3s" }, hideSm: true },
+  { src: "/images/hero-float/lemper-ayam.webp", w: 320, h: 454,
+    style: { top: "44%", right: "2%", width: 130, ["--rot" as any]: "-9deg", ["--dur" as any]: "8.4s", ["--dly" as any]: "-1.1s" }, hideSm: true },
+];
+
+export default function Hero(_props: HeroProps) {
   return (
-    <section id="hero" className="hero-section">
-      {/* Background foto via CSS background-image (BUKAN <Image>).
-          Alasan: background image dikecualikan dari kandidat LCP oleh spec,
-          jadi tidak terkena bug Lighthouse mobile NO_LCP pada next/image.
-          Dengan begitu judul H1 statis-lah yang jadi kandidat LCP → selalu
-          terdeteksi. Gambar tetap cepat karena di-preload di layout <head>.
-          (Decorative → role/aria-label untuk aksesibilitas.) */}
-      <div
-        className="hero-photo active"
-        role="img"
-        aria-label={photo.alt}
-        style={{
-          backgroundImage: `url('${photo.url}')`,
-          backgroundSize: "cover",
-          backgroundPosition: "center 50%",
-        }}
-      />
-      <div className="hero-vignette" />
+    <section id="hero" className="hero-section hero-redesign">
+      {/* Glow blobs emas */}
+      <div className="hero-glow hero-glow-a" aria-hidden="true" />
+      <div className="hero-glow hero-glow-b" aria-hidden="true" />
       <div className="hero-grain" />
 
-      <div className="hero-content">
-        {/* Badge */}
+      {/* Kartu foto makanan melayang (dekoratif) */}
+      <div className="hero-floats" aria-hidden="true">
+        {FLOATERS.map((f, i) => (
+          <img
+            key={i}
+            src={f.src}
+            alt=""
+            width={f.w}
+            height={f.h}
+            decoding="async"
+            loading="eager"
+            className={`hero-fl${f.hideSm ? " hero-fl-hide-sm" : ""}`}
+            style={f.style}
+          />
+        ))}
+      </div>
+
+      {/* Scrim radial supaya teks selalu kontras di tengah */}
+      <div className="hero-scrim" aria-hidden="true" />
+
+      <div className="hero-content hero-content--center">
         <div className="hero-enter" style={{
           display: "inline-flex", alignItems: "center", gap: 10,
           background: "rgba(var(--card-rgb),0.6)", backdropFilter: "blur(12px)",
@@ -46,7 +71,7 @@ export default function Hero(_props: HeroProps) {
           </span>
         </div>
 
-        {/* Judul — STATIS & terlihat penuh sejak SSR = kandidat LCP yang andal */}
+        {/* Judul STATIS = kandidat LCP yang andal */}
         <h1 className="font-display hero-title">
           Pesan catering
           <br />
@@ -55,13 +80,13 @@ export default function Hero(_props: HeroProps) {
           </span>
         </h1>
 
-        <p className="hero-subtitle hero-enter" style={{ animationDelay: "0.12s" }}>
+        <p className="hero-subtitle hero-enter" style={{ animationDelay: "0.12s", marginLeft: "auto", marginRight: "auto" }}>
           Isi form, pilih paket, langsung konfirmasi WA.{" "}
           <strong style={{ color: "var(--accent)" }}>1.200+ acara sukses</strong>{" "}
           di Bengkulu — pernikahan, hajatan, hingga korporat.
         </p>
 
-        <div className="hero-btns hero-enter" style={{ animationDelay: "0.22s" }}>
+        <div className="hero-btns hero-enter" style={{ animationDelay: "0.22s", justifyContent: "center" }}>
           <a href="#kalkulator" className="btn-primary btn-gold-pulse" style={{ textDecoration: "none" }}>
             Hitung Estimasi Harga →
           </a>
@@ -70,16 +95,6 @@ export default function Hero(_props: HeroProps) {
             Lihat Paket
           </a>
         </div>
-      </div>
-
-      {/* Scroll indicator — desktop only */}
-      <div className="hidden-mobile" style={{
-        position: "absolute", bottom: 32, right: 32, zIndex: 6,
-        color: "var(--text-secondary)", fontSize: 11, letterSpacing: 1,
-        textTransform: "uppercase", display: "flex", alignItems: "center", gap: 10,
-      }}>
-        <span>Scroll</span>
-        <div className="scroll-line-anim" />
       </div>
     </section>
   );

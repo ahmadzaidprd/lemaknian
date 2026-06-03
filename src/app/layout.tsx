@@ -126,16 +126,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        {/* Preload hero backdrop (dipakai sebagai CSS background di Hero) agar
-            tetap tampil cepat walau bukan via next/image. */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero/hero-1-rendang-rempah.webp"
-          type="image/webp"
-          // @ts-expect-error fetchpriority belum ada di typings React
-          fetchpriority="high"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
