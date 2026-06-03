@@ -110,6 +110,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="id">
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        {/* Preload LCP image — hero pertama yang tampil saat halaman dibuka */}
+        <link
+          rel="preload"
+          as="image"
+          href="/images/hero/hero-1-rendang-rempah.webp"
+          // @ts-expect-error fetchpriority is valid but not yet in React typings
+          fetchpriority="high"
+          type="image/webp"
+        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

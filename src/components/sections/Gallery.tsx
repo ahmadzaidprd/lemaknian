@@ -94,6 +94,8 @@ export default function Gallery() {
               draggable={false}
               sizes="(max-width: 640px) 100vw, 340px"
               style={{ objectFit: "cover" }}
+              loading="lazy"
+              fetchPriority="low"
             />
             <div className="gallery-overlay">
               <div style={{ display: "inline-block", background: "var(--accent)", color: "var(--accent-text)", padding: "4px 10px", borderRadius: 999, fontSize: 10, fontWeight: 600, marginBottom: 14, alignSelf: "flex-start", textTransform: "uppercase", letterSpacing: 0.5 }}>{g.kategori}</div>

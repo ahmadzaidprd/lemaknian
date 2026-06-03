@@ -64,7 +64,8 @@ export default function Story() {
               fill
               sizes="(max-width: 880px) 100vw, 50vw"
               style={{ objectFit: "cover", filter: "brightness(0.85) contrast(1.05)" }}
-              priority
+              loading="lazy"
+              fetchPriority="low"
             />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(180deg, transparent 50%, rgba(var(--photo-tint),0.5) 100%)" }} />
           </div>

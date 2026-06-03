@@ -78,6 +78,8 @@ export default function MenuPreview() {
                     fill
                     sizes="(max-width: 640px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     style={{ objectFit: "cover", transition: "transform 0.6s cubic-bezier(0.22,1,0.36,1)" }}
+                    loading="lazy"
+                    fetchPriority="low"
                   />
                   <div style={{
                     position: "absolute", top: 12, left: 12,

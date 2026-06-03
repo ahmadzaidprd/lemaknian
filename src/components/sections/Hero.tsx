@@ -77,10 +77,11 @@ function HeroPhoto({ p, i, photoIdx, opacity }: {
   photoIdx: number;
   opacity: number;
 }) {
+  const isActive = i === photoIdx;
   return (
     <div
-      className={`hero-photo ${i === photoIdx ? "active" : ""}`}
-      style={{ overflow: "hidden", opacity: i === photoIdx ? opacity : 0 }}
+      className={`hero-photo ${isActive ? "active" : ""}`}
+      style={{ overflow: "hidden", opacity: isActive ? opacity : 0 }}
     >
       <Image
         src={p.url}
@@ -88,9 +89,11 @@ function HeroPhoto({ p, i, photoIdx, opacity }: {
         fill
         sizes="100vw"
         style={{ objectFit: "cover", objectPosition: "center 50%" }}
-        // priority hanya untuk foto pertama (yang tampil saat halaman dibuka)
         priority={i === 0}
-        quality={85}
+        // Foto pertama: eager + fetchpriority high (LCP). Foto lain: lazy agar tidak bersaing.
+        loading={i === 0 ? "eager" : "lazy"}
+        fetchPriority={i === 0 ? "high" : "low"}
+        quality={i === 0 ? 85 : 75}
       />
     </div>
   );
