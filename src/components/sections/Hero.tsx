@@ -10,7 +10,16 @@ interface HeroProps { variant?: HeroVariant }
 
 export default function Hero({ variant = "bigType" }: HeroProps) {
   const [photoIdx, setPhotoIdx] = useState(0);
+  // Awalnya HANYA foto-0 yang dimuat (foto LCP). Foto slider lain di-mount belakangan
+  // agar tidak berebut bandwidth saat load awal → LCP lebih cepat & hemat data.
+  const [mountExtras, setMountExtras] = useState(false);
   const heroRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    // Mount foto slider lain setelah load awal selesai (idle), sebelum rotasi pertama.
+    const t = setTimeout(() => setMountExtras(true), 2500);
+    return () => clearTimeout(t);
+  }, []);
 
   useEffect(() => {
     // Hormati prefers-reduced-motion: jangan auto-rotate (juga ramah untuk Lighthouse).
@@ -42,9 +51,9 @@ export default function Hero({ variant = "bigType" }: HeroProps) {
 
   return (
     <section id="hero" ref={heroRef} className="hero-section">
-      {variant === "bigType"      && <HeroBigType photoIdx={photoIdx} />}
-      {variant === "centerStack"  && <HeroCenterStack photoIdx={photoIdx} />}
-      {variant === "splitMarquee" && <HeroSplitMarquee photoIdx={photoIdx} />}
+      {variant === "bigType"      && <HeroBigType photoIdx={photoIdx} mountExtras={mountExtras} />}
+      {variant === "centerStack"  && <HeroCenterStack photoIdx={photoIdx} mountExtras={mountExtras} />}
+      {variant === "splitMarquee" && <HeroSplitMarquee photoIdx={photoIdx} mountExtras={mountExtras} />}
 
       {/* photo indicator pills */}
       <div style={{
@@ -100,6 +109,7 @@ function HeroPhoto({ p, i, photoIdx, opacity }: {
         // Foto pertama: eager + fetchpriority high (LCP). Foto lain: lazy agar tidak bersaing.
         loading={i === 0 ? "eager" : "lazy"}
         fetchPriority={i === 0 ? "high" : "low"}
+        decoding="async"
         quality={i === 0 ? 85 : 75}
       />
     </div>
@@ -107,10 +117,11 @@ function HeroPhoto({ p, i, photoIdx, opacity }: {
 }
 
 /* ── variant A: bigType ── */
-function HeroBigType({ photoIdx }: { photoIdx: number }) {
+function HeroBigType({ photoIdx, mountExtras }: { photoIdx: number; mountExtras: boolean }) {
   return (
     <>
       {heroPhotos.map((p, i) => (
+        (i === 0 || mountExtras) &&
         <HeroPhoto key={i} p={p} i={i} photoIdx={photoIdx} opacity={1} />
       ))}
       <div className="hero-vignette" />
@@ -173,10 +184,11 @@ function HeroBigType({ photoIdx }: { photoIdx: number }) {
 }
 
 /* ── variant B: centerStack ── */
-function HeroCenterStack({ photoIdx }: { photoIdx: number }) {
+function HeroCenterStack({ photoIdx, mountExtras }: { photoIdx: number; mountExtras: boolean }) {
   return (
     <>
       {heroPhotos.map((p, i) => (
+        (i === 0 || mountExtras) &&
         <HeroPhoto key={i} p={p} i={i} photoIdx={photoIdx} opacity={0.55} />
       ))}
       <div style={{
@@ -230,11 +242,12 @@ function HeroCenterStack({ photoIdx }: { photoIdx: number }) {
 }
 
 /* ── variant C: splitMarquee ── */
-function HeroSplitMarquee({ photoIdx }: { photoIdx: number }) {
+function HeroSplitMarquee({ photoIdx, mountExtras }: { photoIdx: number; mountExtras: boolean }) {
   const marqueeItems = [...menuData, ...menuData];
   return (
     <>
       {heroPhotos.map((p, i) => (
+        (i === 0 || mountExtras) &&
         <HeroPhoto key={i} p={p} i={i} photoIdx={photoIdx} opacity={0.4} />
       ))}
       <div style={{
