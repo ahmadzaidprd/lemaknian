@@ -1,13 +1,13 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  output: "export",
   trailingSlash: true,
   compress: true,
 
   images: {
-    formats: ["image/avif", "image/webp"],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 31536000,
+    // Static export tidak mendukung Next.js image optimization API.
+    // Gambar hero sudah WebP; Cloudflare Polish otomatis serve WebP ke browser modern.
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: "https",
@@ -15,26 +15,6 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
-  },
-
-  async headers() {
-    return [
-      {
-        // Ganti capturing group → non-capturing group (?:...)
-        source: "/(:path*\.(?:jpg|jpeg|png|webp|avif|svg|ico|woff|woff2|ttf|otf|css|js))",
-        headers: [
-          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
-        ],
-      },
-      {
-        source: "/(.*)",
-        headers: [
-          { key: "X-Content-Type-Options", value: "nosniff" },
-          { key: "X-Frame-Options", value: "SAMEORIGIN" },
-          { key: "X-XSS-Protection", value: "1; mode=block" },
-        ],
-      },
-    ];
   },
 };
 
