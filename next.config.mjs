@@ -1,13 +1,14 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
   trailingSlash: true,
   compress: true,
 
+  // Vercel: Next.js Image Optimization aktif penuh — auto resize, AVIF/WebP, srcset.
   images: {
-    // Static export tidak mendukung Next.js image optimization API.
-    // Gambar hero sudah WebP; Cloudflare Polish otomatis serve WebP ke browser modern.
-    unoptimized: true,
+    formats: ["image/avif", "image/webp"],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
+    minimumCacheTTL: 31536000,
     remotePatterns: [
       {
         protocol: "https",
@@ -15,6 +16,19 @@ const nextConfig = {
         pathname: "/**",
       },
     ],
+  },
+
+  async headers() {
+    return [
+      {
+        source: "/(.*)",
+        headers: [
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-XSS-Protection", value: "1; mode=block" },
+        ],
+      },
+    ];
   },
 };
 

@@ -1,5 +1,21 @@
 import type { Metadata, Viewport } from "next";
+import { Inter, Fraunces } from "next/font/google";
 import "./globals.css";
+
+// Self-hosted via next/font — tidak ada request render-blocking ke fonts.googleapis.com,
+// dan otomatis preload + font-display: swap untuk menghindari FOIT.
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-inter",
+});
+const fraunces = Fraunces({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-fraunces",
+});
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FloatingWA } from "@/components/ui/FloatingWA";
@@ -107,28 +123,9 @@ const jsonLd = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="id">
+    <html lang="id" className={`${inter.variable} ${fraunces.variable}`}>
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
-        {/* Google Fonts — preconnect dulu agar DNS/TLS sudah siap, lalu load non-blocking */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          rel="stylesheet"
-          href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fraunces:opsz,wght,SOFT,WONK@9..144,300..700,0..100,0..1&display=swap"
-          media="print"
-          // @ts-expect-error onload is valid for link elements
-          onLoad="this.media='all'"
-        />
-        {/* Preload LCP image — hero pertama yang tampil saat halaman dibuka */}
-        <link
-          rel="preload"
-          as="image"
-          href="/images/hero/hero-1-rendang-rempah.webp"
-          // @ts-expect-error fetchpriority is valid but not yet in React typings
-          fetchpriority="high"
-          type="image/webp"
-        />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

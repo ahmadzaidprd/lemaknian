@@ -13,8 +13,15 @@ export default function Hero({ variant = "bigType" }: HeroProps) {
   const heroRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
-    const t = setInterval(() => setPhotoIdx((i) => (i + 1) % heroPhotos.length), 5800);
-    return () => clearInterval(t);
+    // Hormati prefers-reduced-motion: jangan auto-rotate (juga ramah untuk Lighthouse).
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Tunda rotasi pertama agar foto LCP (foto-0) tetap stabil saat pengukuran awal,
+    // sehingga browser/Lighthouse bisa menetapkan LCP dengan benar sebelum slide berganti.
+    let interval: ReturnType<typeof setInterval>;
+    const startDelay = setTimeout(() => {
+      interval = setInterval(() => setPhotoIdx((i) => (i + 1) % heroPhotos.length), 5800);
+    }, 6000);
+    return () => { clearTimeout(startDelay); clearInterval(interval); };
   }, []);
 
   useEffect(() => {

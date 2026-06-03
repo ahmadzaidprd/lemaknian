@@ -95,7 +95,7 @@ html { scroll-behavior: smooth; }
 body {
   background: var(--bg);
   color: var(--text-primary);
-  font-family: "Inter", system-ui, sans-serif;
+  font-family: var(--font-inter), "Inter", system-ui, sans-serif;
   font-feature-settings: "ss01", "cv11";
   -webkit-font-smoothing: antialiased;
   margin: 0;
@@ -104,7 +104,7 @@ body {
 
 /* serif display for hero */
 .font-display {
-  font-family: "Fraunces", "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-fraunces), "Fraunces", "Cormorant Garamond", Georgia, serif;
   font-feature-settings: "ss01";
   letter-spacing: -0.02em;
 }
