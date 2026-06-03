@@ -179,19 +179,36 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu — drawer (tidak menutupi seluruh layar) */}
       <div
         aria-hidden={!menuOpen}
         style={{
-          position: "fixed", inset: 0, zIndex: 55,
+          position: "fixed", top: 0, right: 0, bottom: 0,
+          width: "min(86vw, 360px)", zIndex: 56,
           background: "var(--bg)",
+          borderLeft: "1px solid var(--border)",
+          boxShadow: "-24px 0 60px rgba(0,0,0,0.45)",
           display: "flex", flexDirection: "column",
-          paddingTop: 80, paddingBottom: 32,
+          paddingTop: 76, paddingBottom: 32,
           paddingLeft: 24, paddingRight: 24,
-          transform: menuOpen ? "translateX(0)" : "translateX(100%)",
+          transform: menuOpen ? "translateX(0)" : "translateX(105%)",
           transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
           overflowY: "auto",
         }}>
+
+        {/* Tombol tutup (X) di dalam drawer */}
+        <button onClick={closeMenu} aria-label="Tutup menu"
+          style={{
+            position: "absolute", top: 18, right: 18,
+            width: 38, height: 38, borderRadius: 10,
+            border: "1px solid var(--border)", background: "var(--bg-card)",
+            color: "var(--text-primary)", cursor: "pointer",
+            display: "grid", placeItems: "center",
+          }}>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+            <path d="M18 6L6 18M6 6l12 12" />
+          </svg>
+        </button>
 
         <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 4 }}>
           {NAV_LINKS.map((l, i) => (
@@ -245,10 +262,10 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Backdrop */}
+      {/* Backdrop — klik di area mana pun di luar drawer untuk menutup */}
       {menuOpen && (
-        <div onClick={closeMenu} style={{
-          position: "fixed", inset: 0, zIndex: 54,
+        <div onClick={closeMenu} aria-label="Tutup menu" style={{
+          position: "fixed", inset: 0, zIndex: 55,
           background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)",
         }} />
       )}
