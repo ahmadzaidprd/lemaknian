@@ -280,11 +280,14 @@ export default async function ArtikelPage({ params }: { params: { slug: string }
                 <div style={{ color: "var(--text-faint)", fontSize: 11, textTransform: "uppercase", letterSpacing: 1.5, marginBottom: 12 }}>Tags</div>
                 <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
                   {artikel.tags.map((tag: string) => (
-                    <span key={tag} style={{
-                      background: "var(--bg-card)", border: "1px solid var(--border)",
-                      color: "var(--text-secondary)", fontSize: 13,
-                      padding: "5px 14px", borderRadius: 999,
-                    }}>#{tag}</span>
+                    <Link key={tag} href="/blog"
+                      title={`Lihat artikel lain — ${tag}`}
+                      style={{
+                        background: "var(--bg-card)", border: "1px solid var(--border)",
+                        color: "var(--text-secondary)", fontSize: 13,
+                        padding: "5px 14px", borderRadius: 999,
+                        textDecoration: "none", transition: "color 0.2s, border-color 0.2s",
+                      }}>#{tag}</Link>
                   ))}
                 </div>
               </div>

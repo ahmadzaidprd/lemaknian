@@ -59,7 +59,7 @@ const ptComponents = {
     // Paragraf ideal: 50-75 kata, line-height 1.85
     normal: ({ children }: any) => (
       <p style={{
-        color: "var(--text-secondary)",
+        color: "var(--text-primary)",
         fontSize: "clamp(15px, 1.8vw, 17px)",
         lineHeight: 1.85,
         margin: "0 0 26px",

@@ -148,8 +148,8 @@ export function SocialShare({ judul, slug }: { judul: string; slug: string }) {
     },
     {
       label: "Twitter/X",
-      color: "#000",
-      bg: "rgba(255,255,255,0.08)",
+      color: "var(--text-primary)",
+      bg: "rgba(var(--accent-rgb),0.10)",
       href: `https://twitter.com/intent/tweet?text=${encodeURIComponent(judul)}&url=${encodeURIComponent(url)}`,
       icon: (
         <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
