@@ -19,7 +19,6 @@ const fraunces = Fraunces({
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import { FloatingWA } from "@/components/ui/FloatingWA";
-import LiveTicker from "@/components/ui/LiveTicker";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
@@ -136,7 +135,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <main>{children}</main>
         <Footer />
         <FloatingWA />
-        <LiveTicker />
         <SpeedInsights />
       </body>
     </html>
