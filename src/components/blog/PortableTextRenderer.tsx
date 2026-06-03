@@ -224,9 +224,10 @@ const ptComponents = {
     ),
 
     ctaBox: ({ value }: any) => (
+      // Background selalu gelap di kedua mode → paksa teks terang agar terbaca
       <div style={{ background: "linear-gradient(135deg, #1a1508, #221c08)", border: "1px solid rgba(232,200,122,0.25)", borderRadius: 16, padding: "28px 24px", margin: "36px 0", textAlign: "center" }}>
-        {value.judul && <div style={{ fontFamily: "Fraunces, serif", color: "var(--text-primary)", fontWeight: 500, fontSize: 20, marginBottom: 10, letterSpacing: "-0.02em" }}>{value.judul}</div>}
-        {value.deskripsi && <p style={{ color: "var(--text-secondary)", fontSize: 14, lineHeight: 1.65, marginBottom: 18, maxWidth: 400, margin: "0 auto 18px" }}>{value.deskripsi}</p>}
+        {value.judul && <div style={{ fontFamily: "Fraunces, serif", color: "#f5efe6", fontWeight: 500, fontSize: 20, marginBottom: 10, letterSpacing: "-0.02em" }}>{value.judul}</div>}
+        {value.deskripsi && <p style={{ color: "rgba(245,239,230,0.75)", fontSize: 14, lineHeight: 1.65, marginBottom: 18, maxWidth: 400, margin: "0 auto 18px" }}>{value.deskripsi}</p>}
         {value.linkBtn && (
           <a href={value.linkBtn} target="_blank" rel="noopener noreferrer" style={{ display: "inline-block", background: "var(--accent)", color: "var(--accent-text)", padding: "12px 24px", borderRadius: 999, fontSize: 14, fontWeight: 600, textDecoration: "none" }}>
             {value.labelBtn || "Konsultasi Sekarang"}

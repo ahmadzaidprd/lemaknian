@@ -142,18 +142,28 @@ export default async function ArtikelPage({ params }: { params: { slug: string }
 
           {/* Header konten overlap gambar */}
           <div style={{
-            maxWidth: 800, margin: "0 auto",
+            maxWidth: 840, margin: "0 auto",
             padding: coverUrl ? "0 24px" : "90px 24px 0",
-            marginTop: coverUrl ? -160 : 0,
+            marginTop: coverUrl ? -150 : 0,
             position: "relative", zIndex: 2,
           }}>
+          {/* Panel glass gelap — menjamin teks terang selalu terbaca di light & dark mode */}
+          <div style={coverUrl ? {
+            background: "rgba(13,10,6,0.58)",
+            backdropFilter: "blur(16px)",
+            WebkitBackdropFilter: "blur(16px)",
+            border: "1px solid rgba(245,239,230,0.12)",
+            borderRadius: 24,
+            padding: "clamp(20px, 4vw, 34px)",
+            boxShadow: "0 30px 70px rgba(0,0,0,0.45)",
+          } : undefined}>
             {/* Breadcrumb */}
-            <nav style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: "rgba(245,239,230,0.5)", marginBottom: 18, flexWrap: "wrap" }}>
+            <nav style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 12, color: coverUrl ? "rgba(245,239,230,0.5)" : "var(--text-muted)", marginBottom: 18, flexWrap: "wrap" }}>
               <Link href="/" style={{ color: "inherit", textDecoration: "none" }}>Home</Link>
               <span>/</span>
               <Link href="/blog" style={{ color: "inherit", textDecoration: "none" }}>Blog</Link>
               <span>/</span>
-              <span style={{ color: "rgba(245,239,230,0.8)" }}>{artikel.judul}</span>
+              <span style={{ color: coverUrl ? "rgba(245,239,230,0.8)" : "var(--text-secondary)" }}>{artikel.judul}</span>
             </nav>
 
             {/* Kategori */}
@@ -210,10 +220,10 @@ export default async function ArtikelPage({ params }: { params: { slug: string }
                   <div style={{ color: coverUrl ? "rgba(245,239,230,0.9)" : "var(--text-primary)", fontSize: 13, fontWeight: 500 }}>
                     {artikel.structuredData?.penulis || "Tim Lemaknian"}
                   </div>
-                  <div style={{ color: "rgba(245,239,230,0.4)", fontSize: 11 }}>Lemaknian · Bengkulu</div>
+                  <div style={{ color: coverUrl ? "rgba(245,239,230,0.4)" : "var(--text-muted)", fontSize: 11 }}>Lemaknian · Bengkulu</div>
                 </div>
               </div>
-              <span style={{ color: "rgba(245,239,230,0.4)", fontSize: 13 }}>
+              <span style={{ color: coverUrl ? "rgba(245,239,230,0.4)" : "var(--text-muted)", fontSize: 13 }}>
                 {formatTanggal(artikel.tanggal)}
               </span>
               <span style={{
@@ -225,11 +235,12 @@ export default async function ArtikelPage({ params }: { params: { slug: string }
                 ⏱ {artikel.readTime} menit baca
               </span>
               {artikel.tanggalUpdate && artikel.tanggalUpdate !== artikel.tanggal && (
-                <span style={{ color: "rgba(245,239,230,0.4)", fontSize: 11, fontStyle: "italic" }}>
+                <span style={{ color: coverUrl ? "rgba(245,239,230,0.4)" : "var(--text-muted)", fontSize: 11, fontStyle: "italic" }}>
                   Diperbarui {formatTanggal(artikel.tanggalUpdate)}
                 </span>
               )}
             </div>
+          </div>
           </div>
         </div>
 

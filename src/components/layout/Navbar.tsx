@@ -53,6 +53,11 @@ export default function Navbar() {
 
   const closeMenu = () => setMenuOpen(false);
 
+  // Homepage: navbar transparan di atas hero gelap, solid setelah scroll.
+  // Halaman lain (blog/artikel/menu/dll): selalu solid agar link selalu terbaca.
+  const isHome = pathname === "/";
+  const solid = scrolled || !isHome;
+
   const scrollTo = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (!href.startsWith("#")) return;
     e.preventDefault();
@@ -71,7 +76,7 @@ export default function Navbar() {
 
   return (
     <>
-      <nav className={`navbar ${scrolled ? "scrolled" : ""}`} style={{ padding: "14px 20px" }}>
+      <nav className={`navbar ${solid ? "scrolled" : ""}`} style={{ padding: "14px 20px" }}>
 
         
         {/* Logo → home */}

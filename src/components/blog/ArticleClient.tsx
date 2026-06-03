@@ -248,19 +248,19 @@ export function StickyCTA() {
         style={{
           position: "absolute", top: 8, right: 8,
           background: "none", border: "none",
-          color: "var(--text-faint)", cursor: "pointer",
+          color: "rgba(245,239,230,0.5)", cursor: "pointer",
           fontSize: 16, lineHeight: 1, padding: 4,
         }}
       >×</button>
       <div style={{ fontSize: 20, marginBottom: 8 }}>🍛</div>
       <div style={{
-        color: "var(--text-primary)", fontSize: 13,
+        color: "#f5efe6", fontSize: 13,
         fontWeight: 600, marginBottom: 6, lineHeight: 1.3,
       }}>
         Butuh catering untuk acaramu?
       </div>
       <p style={{
-        color: "var(--text-muted)", fontSize: 11,
+        color: "rgba(245,239,230,0.6)", fontSize: 11,
         lineHeight: 1.5, marginBottom: 12,
       }}>
         Bu Yati siap bantu. Konsultasi gratis, respon 1 jam.
