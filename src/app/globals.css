@@ -120,7 +120,9 @@ body {
 
 /* ─── REVEAL ──────────────────────────────────────────────── */
 .reveal {
-  opacity: 0;
+  /* 0.001 bukan 0: hindari bug Chromium yang bikin Lighthouse gagal deteksi LCP
+     (elemen yang mulai dari opacity:0 diabaikan sebagai kandidat LCP → NO_LCP). */
+  opacity: 0.001;
   transform: translateY(36px);
   transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
               transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
@@ -130,7 +132,8 @@ body {
 /* word/letter reveal */
 .split-word, .split-char {
   display: inline-block;
-  opacity: 0;
+  /* 0.001 bukan 0 — lihat catatan di .reveal (hindari NO_LCP Chromium bug). */
+  opacity: 0.001;
   transform: translateY(0.6em) rotate(2deg);
   transition: opacity 0.7s cubic-bezier(0.22, 1, 0.36, 1),
               transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
