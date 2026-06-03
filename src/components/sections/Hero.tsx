@@ -3,7 +3,6 @@
 // Lighthouse PASTI menemukan kandidat LCP → tidak lagi NO_LCP. Juga membuang
 // slider/magnet/parallax JS dari hero → TBT lebih kecil & bundle JS lebih ringan.
 
-import Image from "next/image";
 import { heroPhotos } from "@/lib/data";
 import type { HeroVariant } from "@/types";
 
@@ -14,20 +13,22 @@ export default function Hero(_props: HeroProps) {
 
   return (
     <section id="hero" className="hero-section">
-      {/* Background foto — satu gambar, priority, jadi elemen LCP yang stabil */}
-      <div className="hero-photo active" style={{ overflow: "hidden", opacity: 1 }}>
-        <Image
-          src={photo.url}
-          alt={photo.alt}
-          fill
-          sizes="100vw"
-          style={{ objectFit: "cover", objectPosition: "center 50%" }}
-          priority
-          fetchPriority="high"
-          decoding="async"
-          quality={80}
-        />
-      </div>
+      {/* Background foto via CSS background-image (BUKAN <Image>).
+          Alasan: background image dikecualikan dari kandidat LCP oleh spec,
+          jadi tidak terkena bug Lighthouse mobile NO_LCP pada next/image.
+          Dengan begitu judul H1 statis-lah yang jadi kandidat LCP → selalu
+          terdeteksi. Gambar tetap cepat karena di-preload di layout <head>.
+          (Decorative → role/aria-label untuk aksesibilitas.) */}
+      <div
+        className="hero-photo active"
+        role="img"
+        aria-label={photo.alt}
+        style={{
+          backgroundImage: `url('${photo.url}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center 50%",
+        }}
+      />
       <div className="hero-vignette" />
       <div className="hero-grain" />
 
