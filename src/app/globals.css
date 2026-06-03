@@ -599,24 +599,35 @@ input[type="range"].slider-gold::-webkit-slider-thumb:hover {
   background: radial-gradient(circle, rgba(var(--accent-rgb),0.22), transparent 70%);
 }
 
-/* Kartu foto melayang */
-.hero-floats { position: absolute; inset: 0; z-index: 2; pointer-events: none; }
-.hero-fl {
-  position: absolute;
-  height: auto;
+/* Cincin foto berputar (orbit) — murni CSS transform (composited) */
+.hero-orbit {
+  position: absolute; top: 50%; left: 50%;
+  width: 0; height: 0;
+  --r: 330px;            /* radius cincin */
+  --card: 165px;         /* lebar kartu */
+  z-index: 2; pointer-events: none;
+  animation: heroOrbit 70s linear infinite;
+  will-change: transform;
+}
+.hero-orbit-slot {
+  position: absolute; top: 0; left: 0;
+  width: var(--card);
+  margin-left: calc(var(--card) / -2);
+  margin-top: calc(var(--card) / -2);
+}
+.hero-orbit-img {
+  display: block;
+  width: 100%; height: auto;
   object-fit: cover;
   border-radius: 18px;
   border: 1px solid rgba(245,239,230,0.10);
   box-shadow: 0 24px 60px rgba(0,0,0,0.55), 0 0 0 1px rgba(var(--accent-rgb),0.06);
-  transform: rotate(var(--rot, 0deg));
-  animation: heroFloat var(--dur, 7s) ease-in-out infinite;
-  animation-delay: var(--dly, 0s);
+  /* counter-rotate dengan durasi sama → foto tetap tegak saat cincin berputar */
+  animation: heroOrbitRev 70s linear infinite;
   will-change: transform;
 }
-@keyframes heroFloat {
-  0%, 100% { transform: translateY(0) rotate(var(--rot, 0deg)); }
-  50%      { transform: translateY(-18px) rotate(var(--rot, 0deg)); }
-}
+@keyframes heroOrbit    { to { transform: rotate(360deg); } }
+@keyframes heroOrbitRev { to { transform: rotate(-360deg); } }
 
 /* Scrim radial agar teks tengah selalu kontras di atas foto */
 .hero-scrim {
@@ -627,17 +638,18 @@ input[type="range"].slider-gold::-webkit-slider-thumb:hover {
 .hero-redesign .hero-content { z-index: 5; }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-fl { animation: none; }
+  .hero-orbit, .hero-orbit-img { animation: none; }
 }
 
-/* Mobile: kurangi & kecilkan kartu agar bersih + ringan */
+/* Mobile: cincin lebih kecil, kartu lebih kecil, sebagian disembunyikan */
 @media (max-width: 767px) {
   .hero-fl-hide-sm { display: none; }
-  .hero-fl { width: 130px !important; border-radius: 14px; }
+  .hero-orbit { --r: 168px; --card: 104px; }
+  .hero-orbit-img { border-radius: 14px; }
   .hero-glow { opacity: 0.4; filter: blur(70px); }
   .hero-scrim {
-    background: radial-gradient(70% 60% at 50% 50%,
-      rgba(var(--photo-tint),0.85) 0%, rgba(var(--photo-tint),0.55) 50%, transparent 85%);
+    background: radial-gradient(75% 62% at 50% 50%,
+      rgba(var(--photo-tint),0.9) 0%, rgba(var(--photo-tint),0.6) 50%, transparent 88%);
   }
 }
 

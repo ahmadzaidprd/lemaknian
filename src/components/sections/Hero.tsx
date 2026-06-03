@@ -1,36 +1,31 @@
 // Server Component — tanpa JS sama sekali (tanpa "use client").
-// Redesign "floating food" yang ringan & elegan:
+// Hero "orbit": foto makanan tradisional berputar melingkar mengelilingi judul.
+// Efek ala carousel, TAPI murni CSS (transform = compositor) → TBT ~0.
 //  • Judul H1 statis penuh-opacity → kandidat LCP yang andal (anti NO_LCP).
-//  • Kartu foto makanan "melayang" pakai animasi MURNI CSS (compositor, bukan
-//    main-thread) → TBT ~0.
-//  • Pakai <img> biasa (bukan next/image) untuk float agar tak kena bug
-//    Lighthouse-mobile NO_LCP pada next/image. File webp-nya sudah mini (5–24KB).
+//  • Cincin berputar pelan; tiap foto counter-rotate agar tetap tegak.
+//  • <img> biasa (bukan next/image) + webp mini (7–17KB) → ringan & aman dari
+//    bug Lighthouse-mobile NO_LCP.
 
 import type { HeroVariant } from "@/types";
 
 interface HeroProps { variant?: HeroVariant }
 
-type Floater = {
-  src: string; w: number; h: number;
-  style: React.CSSProperties; hideSm?: boolean;
-};
+type Orbiter = { src: string; w: number; h: number; hideSm?: boolean };
 
-const FLOATERS: Floater[] = [
-  { src: "/images/hero-float/rendang-sapi.webp", w: 420, h: 280,
-    style: { top: "14%", left: "6%", width: 220, ["--rot" as any]: "-7deg", ["--dur" as any]: "6.5s" } },
-  { src: "/images/hero-float/ikan-bakar.webp", w: 420, h: 281,
-    style: { top: "20%", right: "7%", width: 200, ["--rot" as any]: "6deg", ["--dur" as any]: "7.2s", ["--dly" as any]: "-1.5s" } },
-  { src: "/images/hero-float/kue-tat.webp", w: 320, h: 480,
-    style: { bottom: "12%", left: "11%", width: 150, ["--rot" as any]: "5deg", ["--dur" as any]: "8s", ["--dly" as any]: "-0.8s" }, hideSm: true },
-  { src: "/images/hero-float/ayam-goreng.webp", w: 420, h: 256,
-    style: { bottom: "14%", right: "9%", width: 200, ["--rot" as any]: "-6deg", ["--dur" as any]: "6.8s", ["--dly" as any]: "-2.2s" } },
-  { src: "/images/hero-float/risoles-mayo.webp", w: 420, h: 280,
-    style: { top: "50%", left: "2%", width: 130, ["--rot" as any]: "8deg", ["--dur" as any]: "7.6s", ["--dly" as any]: "-3s" }, hideSm: true },
-  { src: "/images/hero-float/lemper-ayam.webp", w: 320, h: 454,
-    style: { top: "44%", right: "2%", width: 130, ["--rot" as any]: "-9deg", ["--dur" as any]: "8.4s", ["--dly" as any]: "-1.1s" }, hideSm: true },
+// Foto makanan tradisional Indonesia (lokal). Ganti nama file sesuai selera —
+// taruh webp-nya di /public/images/hero-float/
+const ORBITERS: Orbiter[] = [
+  { src: "/images/hero-float/rendang-sapi.webp", w: 420, h: 280 },
+  { src: "/images/hero-float/gulai-rebung.webp", w: 420, h: 280, hideSm: true },
+  { src: "/images/hero-float/ikan-bakar.webp", w: 420, h: 281 },
+  { src: "/images/hero-float/ayam-goreng.webp", w: 420, h: 256 },
+  { src: "/images/hero-float/kue-tat.webp", w: 320, h: 480, hideSm: true },
+  { src: "/images/hero-float/lemper-ayam.webp", w: 320, h: 454 },
 ];
 
 export default function Hero(_props: HeroProps) {
+  const n = ORBITERS.length;
+
   return (
     <section id="hero" className="hero-section hero-redesign">
       {/* Glow blobs emas */}
@@ -38,24 +33,31 @@ export default function Hero(_props: HeroProps) {
       <div className="hero-glow hero-glow-b" aria-hidden="true" />
       <div className="hero-grain" />
 
-      {/* Kartu foto makanan melayang (dekoratif) */}
-      <div className="hero-floats" aria-hidden="true">
-        {FLOATERS.map((f, i) => (
-          <img
-            key={i}
-            src={f.src}
-            alt=""
-            width={f.w}
-            height={f.h}
-            decoding="async"
-            loading="eager"
-            className={`hero-fl${f.hideSm ? " hero-fl-hide-sm" : ""}`}
-            style={f.style}
-          />
-        ))}
+      {/* Cincin foto berputar (dekoratif) */}
+      <div className="hero-orbit" aria-hidden="true">
+        {ORBITERS.map((f, i) => {
+          const angle = (i * 360) / n;
+          return (
+            <span
+              key={i}
+              className={`hero-orbit-slot${f.hideSm ? " hero-fl-hide-sm" : ""}`}
+              style={{ transform: `rotate(${angle}deg) translateY(calc(-1 * var(--r))) rotate(${-angle}deg)` }}
+            >
+              <img
+                src={f.src}
+                alt=""
+                width={f.w}
+                height={f.h}
+                decoding="async"
+                loading="eager"
+                className="hero-orbit-img"
+              />
+            </span>
+          );
+        })}
       </div>
 
-      {/* Scrim radial supaya teks selalu kontras di tengah */}
+      {/* Scrim radial supaya teks tengah selalu kontras */}
       <div className="hero-scrim" aria-hidden="true" />
 
       <div className="hero-content hero-content--center">
