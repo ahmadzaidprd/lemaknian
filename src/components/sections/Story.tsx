@@ -1,11 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { Reveal, SplitText, MagnetButton, useParallax } from "@/components/animations";
+import { Reveal, SplitText, MagnetButton } from "@/components/animations";
 
 export default function Story() {
-  const photoRef = useParallax<HTMLDivElement>(0.12);
-
   return (
     <section id="cerita" style={{ padding: "120px 28px", position: "relative", overflow: "hidden" }}>
       <div className="story-grid" style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 80, alignItems: "center" }}>
@@ -57,7 +55,7 @@ export default function Story() {
 
         <div style={{ position: "relative", height: 560 }}>
           {/* position: absolute + inset: 0 = positioned element, fill akan bekerja */}
-          <div ref={photoRef} style={{ position: "absolute", inset: 0, borderRadius: 24, overflow: "hidden" }}>
+          <div style={{ position: "absolute", inset: 0, borderRadius: 24, overflow: "hidden" }}>
             <Image
               src="/images/story/bu-yati.jpg"
               alt="Bu Yati di dapur"

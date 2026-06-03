@@ -197,25 +197,14 @@ interface SplitTextProps {
   stagger?: number;
   style?: CSSProperties;
 }
-export function SplitText({ text, by = "word", className = "", delay = 0, stagger = 60, style }: SplitTextProps) {
-  const [ref, inView] = useInView<HTMLSpanElement>();
-  const items = by === "char" ? Array.from(text) : text.split(" ");
+// Disederhanakan: render teks polos (TANPA memecah per-huruf/kata & tanpa
+// IntersectionObserver). Animasi per-huruf dulu membuat ratusan <span> +
+// observer di tiap judul \u2192 beban main-thread besar di mobile (pemicu NO_LCP).
+// Animasi masuk yang halus tetap didapat dari wrapper <Reveal> di sekelilingnya.
+export function SplitText({ text, className = "", style }: SplitTextProps) {
   return (
-    <span ref={ref} className={`split-line ${className}`} style={style}>
-      {items.map((it, i) => (
-        <span
-          key={i}
-          className={by === "char" ? "split-char" : "split-word"}
-          style={{
-            transitionDelay: inView ? `${delay + i * stagger}ms` : "0ms",
-            marginRight: by === "word" ? "0.28em" : 0,
-            whiteSpace: it === " " ? "pre" : "normal",
-          }}
-          ref={(el) => { if (el && inView) el.classList.add("visible"); }}
-        >
-          {it === " " ? "\u00A0" : it}
-        </span>
-      ))}
+    <span className={`split-line ${className}`} style={style}>
+      {text}
     </span>
   );
 }

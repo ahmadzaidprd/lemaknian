@@ -50,7 +50,7 @@ export default function Gallery() {
   };
 
   return (
-    <section id="galeri" style={{ padding: "120px 0", overflow: "hidden" }}>
+    <section style={{ padding: "120px 0", overflow: "hidden" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "0 28px", display: "flex", justifyContent: "space-between", alignItems: "flex-end", flexWrap: "wrap", gap: 24, marginBottom: 48 }}>
         <div>
           <Reveal>

@@ -5,7 +5,7 @@ import { testimoniData } from "@/lib/data";
 
 export default function Testimonials() {
   return (
-    <section id="testimoni" style={{ background: "var(--bg-dark)", padding: "120px 28px", position: "relative", overflow: "hidden" }}>
+    <section style={{ background: "var(--bg-dark)", padding: "120px 28px", position: "relative", overflow: "hidden" }}>
       <div style={{
         position: "absolute", top: "20%", left: "-10%",
         width: 460, height: 460,

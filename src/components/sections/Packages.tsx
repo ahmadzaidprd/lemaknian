@@ -10,7 +10,7 @@ const scrollToKalkulator = (e: React.MouseEvent<HTMLAnchorElement>) => {
 
 export default function Packages() {
   return (
-    <section id="paket" style={{ padding: "120px 28px", position: "relative", overflow: "hidden" }}>
+    <section style={{ padding: "120px 28px", position: "relative", overflow: "hidden" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24, marginBottom: 56 }}>
           <div>

@@ -15,7 +15,7 @@ export default function MenuPreview() {
   ), [aktif]);
 
   return (
-    <section id="menu" style={{ background: "var(--bg-dark)", padding: "120px 28px" }}>
+    <section style={{ background: "var(--bg-dark)", padding: "120px 28px" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "flex-end", gap: 24, marginBottom: 32 }}>
           <div>

@@ -185,11 +185,22 @@ body {
 }
 .btn-secondary:hover { border-color: var(--accent); color: var(--text-primary); }
 
-.btn-gold-pulse { animation: pulseGold 2.5s ease-in-out infinite; }
-@keyframes pulseGold {
-  0%, 100% { box-shadow: 0 0 0 0 rgba(var(--accent-rgb), 0.4); }
-  50% { box-shadow: 0 0 0 14px rgba(var(--accent-rgb), 0); }
+/* Ring pulse pakai transform+opacity (composited) lewat pseudo-element,
+   bukan box-shadow (non-composited / paint tiap frame). */
+.btn-gold-pulse { position: relative; isolation: isolate; }
+.btn-gold-pulse::after {
+  content: "";
+  position: absolute; inset: 0; z-index: -1;
+  border-radius: inherit;
+  border: 2px solid rgba(var(--accent-rgb), 0.45);
+  animation: pulseGold 2.5s ease-in-out infinite;
+  pointer-events: none;
 }
+@keyframes pulseGold {
+  0%   { transform: scale(1);    opacity: 0.6; }
+  100% { transform: scale(1.18); opacity: 0; }
+}
+@media (prefers-reduced-motion: reduce) { .btn-gold-pulse::after { animation: none; } }
 
 /* magnet target gets willChange for smoothness */
 .magnet { transition: transform 0.25s cubic-bezier(0.22, 1, 0.36, 1); will-change: transform; }
@@ -663,9 +674,10 @@ input[type="range"].slider-gold::-webkit-slider-thumb:hover {
   flex-shrink: 0;
   animation: dotPulse 2s ease-in-out infinite;
 }
+/* opacity-only = composited (dulu box-shadow = non-composited) */
 @keyframes dotPulse {
-  0%, 100% { box-shadow: 0 0 0 0 currentColor; opacity: 1; }
-  50% { box-shadow: 0 0 0 6px transparent; opacity: 0.8; }
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.35; }
 }
 
 /* scroll line indicator */
