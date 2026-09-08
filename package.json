@@ -6,7 +6,11 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "publish:scheduled-articles": "node scripts/publish-scheduled-articles.mjs",
+    "publish:scheduled-articles:dry": "node scripts/publish-scheduled-articles.mjs --dry-run",
+    "audit:sanity-scheduled": "node scripts/audit-sanity-scheduled.mjs",
+    "migrate:article-id": "node scripts/migrate-private-article-id.mjs"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
