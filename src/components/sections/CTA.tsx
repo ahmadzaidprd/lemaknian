@@ -47,7 +47,7 @@ export default function CTA() {
         </h2>
         <Reveal delay={700}>
           <p style={{ color: "var(--text-secondary)", fontSize: 17, lineHeight: 1.6, marginBottom: 36, maxWidth: 500, margin: "0 auto 36px" }}>
-            Konsultasi gratis, respon 1 jam, harga transparan. Sudah dipercaya 27 tahun di Bengkulu.
+            Konsultasi gratis, respon 1 jam, paket menyesuaikan kebutuhan acara. Sudah dipercaya 27 tahun di Bengkulu.
           </p>
         </Reveal>
         <Reveal delay={850}>
@@ -57,7 +57,7 @@ export default function CTA() {
               Konsultasi Gratis via WA
             </MagnetButton>
             <MagnetButton as="a" href="#kalkulator" className="btn-secondary" style={{ textDecoration: "none", padding: "16px 32px", fontSize: 15 }}>
-              Hitung Estimasi
+              Konsultasi Paket
             </MagnetButton>
           </div>
         </Reveal>

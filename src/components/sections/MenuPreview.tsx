@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useMemo, useState } from "react";
 import { Reveal, SplitText, TiltCard } from "@/components/animations";
-import { menuData, formatRupiah } from "@/lib/data";
+import { menuData } from "@/lib/data";
 
 const KATEGORI = ["Semua", "lauk", "sayur", "nasi", "dessert", "minuman", "snack"] as const;
 type Kategori = typeof KATEGORI[number];
@@ -91,8 +91,7 @@ export default function MenuPreview() {
                 <div style={{ padding: 16 }}>
                   <div className="line-clamp-2" style={{ color: "var(--text-primary)", fontSize: 14, fontWeight: 500, marginBottom: 6, lineHeight: 1.3 }}>{item.nama}</div>
                   <div style={{ color: "var(--accent)", fontSize: 13, fontWeight: 600, marginBottom: 8 }}>
-                    {formatRupiah(item.harga)}
-                    <span style={{ color: "var(--text-muted)", fontSize: 11, fontWeight: 400 }}>/porsi</span>
+                    Bisa masuk paket acara
                   </div>
                   <div className="line-clamp-2" style={{ color: "var(--text-faint)", fontSize: 12, lineHeight: 1.5 }}>{item.deskripsi}</div>
                 </div>

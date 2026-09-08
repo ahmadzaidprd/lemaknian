@@ -1,7 +1,7 @@
 "use client";
 
 import { Reveal, SplitText } from "@/components/animations";
-import { paketData, formatRupiah } from "@/lib/data";
+import { paketData } from "@/lib/data";
 
 const scrollToKalkulator = (e: React.MouseEvent<HTMLAnchorElement>) => {
   e.preventDefault();
@@ -78,11 +78,8 @@ export default function Packages() {
                   {p.nama}
                 </div>
 
-                <div style={{ marginBottom: 16 }}>
-                  <span className="font-display text-accent-gradient" style={{ fontSize: 28, fontWeight: 500, letterSpacing: "-0.02em" }}>
-                    {formatRupiah(p.harga_per_pax)}
-                  </span>
-                  <span style={{ color: "var(--text-muted)", fontSize: 13, marginLeft: 4 }}>/pax</span>
+                <div className="font-display text-accent-gradient" style={{ fontSize: 24, fontWeight: 500, letterSpacing: "-0.02em", marginBottom: 16 }}>
+                  Konsultasi via WA
                 </div>
 
                 <div style={{ color: "var(--text-secondary)", fontSize: 13, lineHeight: 1.55, marginBottom: 18, flex: 1 }}>
@@ -121,7 +118,7 @@ export default function Packages() {
                     }
                   }}
                 >
-                  Pilih Paket
+                  Tanya Paket
                 </a>
               </div>
             </Reveal>

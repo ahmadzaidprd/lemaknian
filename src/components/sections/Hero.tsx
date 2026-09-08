@@ -90,7 +90,7 @@ export default function Hero(_props: HeroProps) {
 
         <div className="hero-btns hero-enter" style={{ animationDelay: "0.22s", justifyContent: "center" }}>
           <a href="#kalkulator" className="btn-primary btn-gold-pulse" style={{ textDecoration: "none" }}>
-            Hitung Estimasi Harga →
+            Konsultasi Paket via WA →
           </a>
           <a href="#paket" className="btn-secondary"
             style={{ textDecoration: "none", borderColor: "rgba(245,239,230,0.2)", color: "var(--text-primary)" }}>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { paketData, formatRupiah, waLink } from "@/lib/utils";
+import { paketData, waLink } from "@/lib/utils";
 
 export const metadata = { title: "Paket Catering — Bu Yati Catering Bengkulu" };
 
@@ -13,7 +13,7 @@ export default function PaketPage() {
             Semua acara ada <span className="text-[#e8c87a]">paketnya.</span>
           </h1>
           <p className="text-[#5a4a38] text-sm max-w-md mx-auto">
-            Harga transparan, kualitas terjaga. Dari arisan kecil sampai resepsi besar.
+            Paket fleksibel sesuai kebutuhan acara. Konsultasikan menu, porsi, dan lokasi langsung via WhatsApp.
           </p>
         </div>
 
@@ -33,7 +33,7 @@ export default function PaketPage() {
               <div className="flex items-start justify-between mb-4">
                 <div>
                   <h2 className="text-[#f5efe6] text-xl font-medium mb-1">Paket {p.nama}</h2>
-                  <div className="text-[#e8c87a] text-base">{formatRupiah(p.harga_per_pax)}/pax</div>
+                  <div className="text-[#e8c87a] text-base">Konsultasi harga via WA</div>
                 </div>
                 <div className="text-[#3a2a18] text-sm bg-[#141008] px-3 py-1.5 rounded-full border border-[#1e1810]">
                   Min. {p.min_pax} pax
@@ -59,7 +59,7 @@ export default function PaketPage() {
                       : "bg-[#1e1a08] text-[#e8c87a] border border-[#2a2218] hover:bg-[#2a2218]"
                   }`}
                 >
-                  Konsultasi Paket Ini
+                  Tanya Paket Ini
                 </a>
                 <Link
                   href="/booking"

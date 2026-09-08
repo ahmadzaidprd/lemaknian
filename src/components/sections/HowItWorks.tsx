@@ -4,7 +4,7 @@ import { Reveal, SplitText, TiltCard, CountStat } from "@/components/animations"
 import { statsData } from "@/lib/data";
 
 const STEPS = [
-  { num: "01", title: "Hitung estimasi", icon: "🧮", desc: "Masukkan jumlah tamu & pilih paket — estimasi harga keluar otomatis, transparan, tanpa biaya tersembunyi." },
+  { num: "01", title: "Pilih kebutuhan", icon: "🧮", desc: "Masukkan jumlah tamu & pilih paket agar tim Bu Yati bisa rekomendasikan menu dan penawaran yang paling pas." },
   { num: "02", title: "Konfirmasi via WA", icon: "💬", desc: "Tim Bu Yati respon dalam 1 jam. Diskusi menu, lokasi, dan detail acara langsung via WhatsApp." },
   { num: "03", title: "Hari H, tinggal tunggu", icon: "🚚", desc: "Tim datang tepat waktu, setup lengkap, makanan disajikan panas. Anda fokus nikmati acara." },
 ];

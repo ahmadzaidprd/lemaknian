@@ -362,7 +362,7 @@ export default async function ArtikelPage({ params }: { params: { slug: string }
                   padding: "12px 22px", borderRadius: 999,
                   fontSize: 14, textDecoration: "none",
                 }}>
-                  Hitung Estimasi →
+                  Konsultasi Paket →
                 </Link>
               </div>
             </div>

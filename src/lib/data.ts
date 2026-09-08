@@ -61,9 +61,9 @@ export const menuData: MenuItem[] = [
 // ─── testimoni ────────────────────────────────────────────
 export const testimoniData: Testimoni[] = [
   { id: "1", nama: "Rina & Dedi",            acara: "Pernikahan 300 pax",     pax: 300, rating: 5, isi: "Pesan online gampang banget, langsung direspon. Hari H semua tepat waktu dan makanannya habis semua — tamu puas!", inisial: "RD" },
-  { id: "2", nama: "Pak Hendra Wijaya",      acara: "Dinas Pemkot Bengkulu",  pax: 120, rating: 5, isi: "Sudah 3x pakai Bu Yati untuk acara kantor. Harga transparan, tidak ada biaya dadakan. Paling rekomen se-Bengkulu!", inisial: "HW" },
+  { id: "2", nama: "Pak Hendra Wijaya",      acara: "Dinas Pemkot Bengkulu",  pax: 120, rating: 5, isi: "Sudah 3x pakai Bu Yati untuk acara kantor. Konsultasinya jelas, tidak ada biaya dadakan. Paling rekomen se-Bengkulu!", inisial: "HW" },
   { id: "3", nama: "Keluarga Agus Saputra",  acara: "Hajatan rutin tahunan",  pax: 200, rating: 5, isi: "Gulai rebungnya khas banget, beda dari yang lain. Acara keluarga, Bu Yati selalu jadi pilihan pertama.", inisial: "AS" },
-  { id: "4", nama: "Nisa & Fahmi",           acara: "Pernikahan 150 pax",     pax: 150, rating: 5, isi: "Kalkulator harga di website sangat membantu buat plan budget. Tahu estimasinya sebelum hubungi vendor!", inisial: "NF" },
+  { id: "4", nama: "Nisa & Fahmi",           acara: "Pernikahan 150 pax",     pax: 150, rating: 5, isi: "Form konsultasi di website sangat membantu. Tinggal pilih paket dan jumlah tamu, langsung dibantu rekomendasi lewat WA!", inisial: "NF" },
   { id: "5", nama: "Bu Dewi Rahayu",         acara: "Arisan PKK Kota",        pax: 60,  rating: 5, isi: "Pelayanan sangat ramah, makanan datang tepat waktu dan masih panas. Teman-teman PKK semua suka!", inisial: "DR" },
   { id: "6", nama: "PT Sumber Rejeki",       acara: "Seminar perusahaan",     pax: 80,  rating: 5, isi: "Coffee break dan makan siang profesional. Invoice langsung dikirim hari itu. Terima kasih Bu Yati!", inisial: "SR" },
 ];

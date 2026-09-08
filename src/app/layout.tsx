@@ -24,13 +24,13 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 export const metadata: Metadata = {
   title: "Lemaknian — Catering Pernikahan & Hajatan Bengkulu",
   description:
-    "Catering Bengkulu terpercaya sejak 1998. Pesan pernikahan, hajatan & korporat online — hitung estimasi langsung, konfirmasi WA, respon 1 jam.",
+    "Catering Bengkulu terpercaya sejak 1998. Pesan pernikahan, hajatan & korporat online — konsultasi paket langsung via WA, respon 1 jam.",
   keywords:
     "catering bengkulu, catering pernikahan bengkulu, catering hajatan bengkulu, bu yati catering, lemaknian, catering murah bengkulu, catering profesional bengkulu",
   openGraph: {
     title: "Lemaknian — Catering Bengkulu by Bu Yati",
     description:
-      "1.200+ acara sukses. Pesan catering pernikahan & hajatan Bengkulu secara online. Harga transparan, respon 1 jam.",
+      "1.200+ acara sukses. Pesan catering pernikahan & hajatan Bengkulu secara online. Konsultasi paket via WA, respon 1 jam.",
     url: "https://lemaknian.com",
     siteName: "Lemaknian",
     locale: "id_ID",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Lemaknian — Catering Bengkulu",
     description:
-      "Pesan catering pernikahan & hajatan Bengkulu online. Harga transparan, respon cepat.",
+      "Pesan catering pernikahan & hajatan Bengkulu online. Konsultasi paket via WA, respon cepat.",
     images: ["https://lemaknian.com/images/og-image.webp"],
   },
   robots: {

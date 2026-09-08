@@ -257,7 +257,7 @@ export default function Navbar() {
               color: "var(--text-secondary)", textAlign: "center",
               padding: "14px", borderRadius: 50, fontSize: 14, textDecoration: "none",
             }}>
-            Hitung Estimasi Harga
+            Konsultasi Paket
           </a>
         </div>
       </div>

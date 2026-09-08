@@ -94,7 +94,7 @@ Mohon konfirmasi ketersediaan. Terima kasih!`;
                   <option value="">Pilih paket</option>
                   {paketData.map((p) => (
                     <option key={p.id} value={p.nama}>
-                      Paket {p.nama} — Rp {p.harga_per_pax.toLocaleString("id-ID")}/pax
+                      Paket {p.nama} — konsultasi harga via WA
                     </option>
                   ))}
                 </select>

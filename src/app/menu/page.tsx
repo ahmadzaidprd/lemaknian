@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { menuData, formatRupiah } from "@/lib/utils";
+import { menuData } from "@/lib/utils";
 
 const kategoriList = ["Semua", "lauk", "sayur", "nasi", "dessert", "minuman", "snack"] as const;
 type Kategori = typeof kategoriList[number];
@@ -51,7 +51,7 @@ export default function MenuPage() {
               </div>
               <div className="p-5">
                 <div className="text-[#c4b498] font-medium mb-1">{item.nama}</div>
-                <div className="text-[#e8c87a] text-sm mb-3">{formatRupiah(item.harga)}/porsi</div>
+                <div className="text-[#e8c87a] text-sm mb-3">Bisa masuk paket acara</div>
                 <p className="text-[#3a2a18] text-xs leading-relaxed">{item.deskripsi}</p>
                 <div className="mt-3 inline-block bg-[#141008] text-[#4a3a28] text-xs px-3 py-1 rounded-full capitalize border border-[#1e1810]">
                   {item.kategori}
