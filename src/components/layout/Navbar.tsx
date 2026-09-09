@@ -158,6 +158,7 @@ export default function Navbar() {
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label={menuOpen ? "Tutup menu" : "Buka menu"}
             aria-expanded={menuOpen}
+            aria-controls="mobile-navigation-drawer"
             className="show-mobile"
             style={{
               width: 36, height: 36, borderRadius: 8,
@@ -181,7 +182,9 @@ export default function Navbar() {
 
       {/* Mobile Menu — drawer (tidak menutupi seluruh layar) */}
       <div
+        id="mobile-navigation-drawer"
         aria-hidden={!menuOpen}
+        inert={!menuOpen}
         style={{
           position: "fixed", top: 0, right: 0, bottom: 0,
           width: "min(86vw, 360px)", zIndex: 56,
@@ -194,6 +197,7 @@ export default function Navbar() {
           transform: menuOpen ? "translateX(0)" : "translateX(105%)",
           transition: "transform 0.35s cubic-bezier(0.4, 0, 0.2, 1)",
           overflowY: "auto",
+          pointerEvents: menuOpen ? "auto" : "none",
         }}>
 
         {/* Tombol tutup (X) di dalam drawer */}
