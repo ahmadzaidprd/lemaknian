@@ -57,8 +57,8 @@ export default function Story() {
           {/* position: absolute + inset: 0 = positioned element, fill akan bekerja */}
           <div style={{ position: "absolute", inset: 0, borderRadius: 24, overflow: "hidden" }}>
             <Image
-              src="/images/story/bu-yati.jpg"
-              alt="Bu Yati di dapur"
+              src="/images/menu/gulai-rebung.jpg"
+              alt="Gulai rebung khas Bengkulu dari dapur Bu Yati"
               fill
               sizes="(max-width: 880px) 100vw, 50vw"
               style={{ objectFit: "cover", filter: "brightness(0.85) contrast(1.05)" }}

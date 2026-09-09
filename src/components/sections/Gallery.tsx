@@ -3,7 +3,15 @@
 import Image from "next/image";
 import { useEffect, useRef } from "react";
 import { Reveal, SplitText } from "@/components/animations";
-import { galeriData } from "@/lib/data";
+
+const sajianData = [
+  { id: "1", judul: "Rendang Sapi Bengkulu", kategori: "lauk", img: "/images/menu/rendang-sapi.jpg", deskripsi: "Rendang berbumbu pekat untuk hajatan dan acara keluarga." },
+  { id: "2", judul: "Gulai Rebung Khas", kategori: "sayur", img: "/images/menu/gulai-rebung.jpg", deskripsi: "Cita rasa rumahan Bengkulu dengan kuah santan yang gurih." },
+  { id: "3", judul: "Ikan Bakar Serani", kategori: "lauk", img: "/images/menu/ikan-bakar.jpg", deskripsi: "Ikan bakar berbumbu untuk sajian prasmanan yang hangat." },
+  { id: "4", judul: "Ayam Goreng Serundeng", kategori: "lauk", img: "/images/menu/ayam-goreng.jpg", deskripsi: "Ayam goreng dan serundeng gurih, cocok untuk semua usia." },
+  { id: "5", judul: "Kue Tat Bengkulu", kategori: "kudapan", img: "/images/menu/kue-tat.jpg", deskripsi: "Kudapan tradisional Bengkulu untuk melengkapi jamuan." },
+  { id: "6", judul: "Lemper Ayam", kategori: "snack", img: "/images/menu/lemper-ayam.jpg", deskripsi: "Jajanan ketan isi ayam untuk snack box dan coffee break." },
+];
 
 export default function Gallery() {
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -55,14 +63,14 @@ export default function Gallery() {
         <div>
           <Reveal>
             <div style={{ color: "var(--text-muted)", fontSize: 11, letterSpacing: 3, textTransform: "uppercase", marginBottom: 16 }}>
-              · Galeri acara ·
+              · Sajian khas ·
             </div>
           </Reveal>
           <h2 className="font-display" style={{ fontSize: "clamp(36px, 5vw, 64px)", fontWeight: 500, lineHeight: 1.04, marginBottom: 0, color: "var(--text-primary)", letterSpacing: "-0.025em" }}>
-            <SplitText text="Setiap acara" stagger={60} />
+            <SplitText text="Masakan Indonesia," stagger={60} />
             <br />
             <span className="text-accent-gradient" style={{ fontStyle: "italic" }}>
-              <SplitText text="punya ceritanya." stagger={60} delay={250} />
+              <SplitText text="hangat dari dapur." stagger={60} delay={250} />
             </span>
           </h2>
         </div>
@@ -81,7 +89,7 @@ export default function Gallery() {
       </div>
 
       <div ref={trackRef} className="gallery-track" style={{ paddingLeft: "calc(max(28px, (100vw - 1200px) / 2))" }}>
-        {galeriData.map((g) => (
+        {sajianData.map((g) => (
           /*
             Tambah position: relative di sini agar <Image fill> bekerja dengan benar.
             Class gallery-card tetap ada untuk CSS styling yang sudah ada (ukuran, border-radius, dll).
@@ -100,9 +108,8 @@ export default function Gallery() {
             <div className="gallery-overlay">
               <div style={{ display: "inline-block", background: "var(--accent)", color: "var(--accent-text)", padding: "4px 10px", borderRadius: 999, fontSize: 10, fontWeight: 600, marginBottom: 14, alignSelf: "flex-start", textTransform: "uppercase", letterSpacing: 0.5 }}>{g.kategori}</div>
               <div className="font-display" style={{ fontSize: 22, fontWeight: 500, lineHeight: 1.15, marginBottom: 8, letterSpacing: "-0.01em" }}>{g.judul}</div>
-              <div style={{ display: "flex", gap: 14, color: "rgba(255,255,255,0.7)", fontSize: 12 }}>
-                <span>📍 {g.lokasi}</span>
-                <span>👥 {g.pax} pax</span>
+              <div style={{ color: "rgba(255,255,255,0.72)", fontSize: 12, lineHeight: 1.5 }}>
+                {g.deskripsi}
               </div>
             </div>
           </div>

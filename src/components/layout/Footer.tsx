@@ -24,8 +24,8 @@ const COLS = [
     title: "Kontak",
     links: [
       { label: "WhatsApp: 0812-7420-3815",  href: waLink("Assalamualaikum lemaknian") },
-      { label: "Email: halo@lemaknian.com",  href: "mailto:halo@lemaknian.id" },
-      { label: "JL. Bhakti Husada 10",      href: "https://maps.app.goo.gl/v1timWLYGJs5L1te6" },
+      { label: "Email: halo@lemaknian.com",  href: "mailto:halo@lemaknian.com" },
+      { label: "Jl. Bhakti Husada 10, Lingkar Barat", href: "https://www.google.com/maps/search/?api=1&query=-3.838438%2C102.3053111" },
       { label: "Senin\u2013Sabtu, 08.00\u201320.00", href: null },
     ],
   },
@@ -35,7 +35,7 @@ export default function Footer() {
   const pathname = usePathname();
 
   const socials = [
-    { l: "IG", h: "#" },
+    { l: "IG", h: "https://www.instagram.com/rumah_makan_bu_yati/" },
     { l: "FB", h: "#" },
     { l: "TT", h: "#" },
     { l: "WA", h: waLink("Halo Bu Yati") },
