@@ -166,6 +166,7 @@ function toDoc(article) {
     kategori: article.kategori || "panduan-catering",
     tags: article.tags || [],
     featured: Boolean(article.featured),
+    status: "published",
     isi: markdownToPortableText(article.bodyMarkdown || ""),
     seo: {
       metaJudul: article.metaJudul || article.judul,
@@ -180,7 +181,10 @@ function toDoc(article) {
     structuredData: {
       tipe: "Article",
       penulis: article.penulis || "Tim Lemaknian",
-      faqSchema: article.faq || [],
+      faqSchema: (article.faq || []).map((faq, index) => ({
+        ...faq,
+        _key: faq._key || `faq-${index + 1}`,
+      })),
     },
   };
 }
