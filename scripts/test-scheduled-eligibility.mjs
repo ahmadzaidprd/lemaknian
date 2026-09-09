@@ -30,15 +30,17 @@ const eligibleAfterQuery = `*[
   slug.current == $slug
 ][0]._id`;
 
-const [document, eligibleNow, eligibleAfter] = await Promise.all([
+const [document, eligibleNow, eligibleAfter, sanityNow] = await Promise.all([
   client.fetch(documentQuery, { slug, afterSchedule }),
   client.fetch(eligibleNowQuery, { slug }),
   client.fetch(eligibleAfterQuery, { slug, afterSchedule }),
+  client.fetch(`now()`),
 ]);
 
-console.log(JSON.stringify({ document, eligibleNow, eligibleAfter, afterSchedule }, null, 2));
+const expectedNow = document && Date.parse(document.tanggal) <= Date.parse(sanityNow) ? document._id : null;
+console.log(JSON.stringify({ document, eligibleNow, expectedNow, eligibleAfter, afterSchedule, sanityNow }, null, 2));
 
-if (!document || eligibleNow !== null || eligibleAfter !== document._id) {
+if (!document || eligibleNow !== expectedNow || eligibleAfter !== document._id) {
   console.error("Scheduled eligibility test FAILED");
   process.exit(1);
 }

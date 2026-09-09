@@ -40,6 +40,7 @@ loadEnvFiles();
 
 const args = new Set(process.argv.slice(2));
 const dryRun = args.has("--dry-run");
+const updateExisting = args.has("--update-existing");
 const inputArg = process.argv.find((arg) => arg.startsWith("--input="));
 const inputPath = path.resolve(process.cwd(), inputArg?.split("=")[1] || "drafts/scheduled-articles.json");
 const token = process.env.SANITY_AUTH_TOKEN;
@@ -212,10 +213,18 @@ for (const [index, article] of articles.entries()) {
 
   const existingIds = await client.fetch(`*[_type == "artikel" && slug.current == $slug]._id`, { slug: doc.slug.current });
   if (existingIds.length > 0) {
-    console.log(`   skip: slug sudah ada (${existingIds.join(", ")})`);
     if (existingIds.some((id) => id.includes("."))) {
       console.warn("   warning: dokumen lama memakai ID bertitik dan perlu dimigrasikan agar terlihat oleh visitor publik.");
     }
+    if (!updateExisting) {
+      console.log(`   skip: slug sudah ada (${existingIds.join(", ")})`);
+      continue;
+    }
+    if (existingIds.length !== 1 || existingIds[0] !== doc._id) {
+      throw new Error(`Tidak aman memperbarui slug ${doc.slug.current}; existing IDs: ${existingIds.join(", ")}`);
+    }
+    await client.createOrReplace(doc);
+    console.log(`   updated: ${doc._id}`);
     continue;
   }
 
